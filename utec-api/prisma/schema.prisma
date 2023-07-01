@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model actor {
+  email     String      @id
+  morada    String
+  password  String
+  datanasc  DateTime
+  cliente   cliente[]
+  motorista motorista[]
+}
+
+model cliente {
+  clienteEmail String   @id
+  x            String
+  y            String
+  actor        actor    @relation(fields: [clienteEmail], references: [email])
+  viagem       viagem[]
+}
+
+model empresa {
+  codEmpresa  Int         @id
+  nomeEmpresa String
+  motorista   motorista[]
+  taxi        taxi[]
+}
+
+model motorista {
+  email         String          @id
+  destreza      String
+  id_empresa    Int?
+  actor         actor           @relation(fields: [email], references: [email])
+  empresa       empresa?        @relation(fields: [id_empresa], references: [codEmpresa])
+  motoristataxi motoristataxi[]
+}
+
+model motoristataxi {
+  codMotoristaTaxi Int        @id
+  id_taxi          Int?
+  id_motorista     String?
+  taxi             taxi?      @relation(fields: [id_taxi], references: [codTaxi])
+  motorista        motorista? @relation(fields: [id_motorista], references: [email])
+  viagem           viagem[]
+}
+
+model taxi {
+  codTaxi         Int             @id
+  x               String
+  y               String
+  tipoDeViatura   String
+  vmPorKM         Float
+  precoBasePorKM  Float
+  disponibilidade String
+  filaEspera      String?
+  id_empresa      Int?
+  empresa         empresa?        @relation(fields: [id_empresa], references: [codEmpresa])
+  motoristataxi   motoristataxi[]
+}
+
+model viagem {
+  codViagem Int @id
+
+  custoFinal             Float?
+  custoEstimado          Float?
+  pontoPartida           String?
+  pontoDestino           String?
+  distanciaPercorrida    Float?
+  tempoEstimado          DateTime?
+  tempoReal              DateTime?
+  data                   DateTime?
+  factorFiabilidade      String?
+  classificacaoMotorista String?
+  condicionantes         String?
+  estadoViagem           String?
+  motoristataxi          motoristataxi @relation(fields: [fkMotoristaTaxi], references: [codMotoristaTaxi])
+  cliente                cliente       @relation(fields: [fkClienteEmail], references: [clienteEmail])
+  fkMotoristaTaxi        Int
+  fkClienteEmail         String
+}

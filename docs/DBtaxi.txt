@@ -1,0 +1,62 @@
+
+CREATE TABLE actor ( 
+email VARCHAR(50) 
+PRIMARY KEY, 
+morada VARCHAR(50) NOT NULL, 
+password VARCHAR(20) NOT NULL, 
+datanasc date NOT NULL )
+
+CREATE TABLE cliente (
+ email VARCHAR(50) PRIMARY KEY,
+ x VARCHAR(50) NOT NULL,
+ y VARCHAR(50) NOT NULL,
+ FOREIGN KEY (email) REFERENCES actor 
+(email));
+
+ALTER TABLE cliente ADD id_empresa int null, ADD FOREIGN key (id_empresa) REFERENCES empresa (codEmpresa);
+
+CREATE TABLE motorista (
+ email VARCHAR(50) PRIMARY KEY,
+destreza VARCHAR(100) NOT NULL,
+ FOREIGN KEY (email) REFERENCES actor (email),
+ id_empresa INT, FOREIGN KEY (id_empresa) REFERENCES empresa (codEmpresa));
+
+CREATE TABLE empresa (
+ codEmpresa INT PRIMARY KEY,
+ nomeEmpresa VARCHAR(50) NOT NULL);
+
+CREATE TABLE taxi (
+ codTaxi INT PRIMARY KEY,
+ x VARCHAR(100) NOT NULL,
+ y VARCHAR(100) NOT NULL,
+ tipoDeViatura VARCHAR(100) NOT NULL,
+ vmPorKM float (20) NOT NULL,
+ precoBasePorKM float (20) NOT NULL,
+ disponiblidade VARCHAR(100) NOT NULL,
+ filaEspera ENUM('0','1'),
+ id_empresa INT, FOREIGN KEY (id_empresa) REFERENCES empresa (codEmpresa));
+
+
+CREATE TABLE motoristaTaxi (
+ codMotoristaTaxi INT PRIMARY KEY,
+ id_taxi INT, FOREIGN KEY (id_taxi) REFERENCES taxi (codTaxi),
+ id_motorista varchar(100), FOREIGN KEY (id_motorista) REFERENCES motorista (email));
+
+CREATE TABLE viagem (
+ codViagem INT PRIMARY KEY,
+ id_motoristaTaxi INT, FOREIGN KEY (id_motoristaTaxi) REFERENCES motoristataxi (codMotoristaTaxi),
+ id_cliente varchar(100), FOREIGN KEY (id_cliente) REFERENCES cliente (email),
+custoFinal float,
+  custoEstimado float,
+ pontoPartida varchar(100),
+ pontoDestino varchar(100),
+ distanciaPercorrida float,
+ tempoEstimado time,
+ tempoReal time,
+ `data` date,
+ factorFiabilidade varchar(100),
+ classificacaoMotorista varchar(100),
+ condicionantes enum('Meteorologica', 'Transito'),
+ estadoViagem enum ('Marcada', 'Satisfeita', 'Instantanea')      
+);
+

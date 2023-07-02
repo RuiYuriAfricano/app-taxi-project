@@ -46,6 +46,17 @@ export class ActorService {
     return actorR;
   }
 
+  async login(email: string, password: string) {
+    const actorR = await this.prisma.actor.findFirst({
+      where: {
+        email: email,
+        password: password,
+      },
+    });
+
+    return actorR;
+  }
+
   async getAll() {
     const actoresR = await this.prisma.actor.findMany();
 

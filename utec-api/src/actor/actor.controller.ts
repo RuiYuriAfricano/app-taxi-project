@@ -35,6 +35,12 @@ export class ActorController {
     return this.actorService.getOne(email);
   }
 
+  @Post('login')
+  login(@Body() loginData: { email: string, password: string }) {
+    const { email, password } = loginData;
+    return this.actorService.login(email, password);
+  }
+
   @Get()
   getAll() {
     return this.actorService.getAll();

@@ -20,7 +20,7 @@ export class ViagemService {
     data.codViagem = Number(data?.codViagem);
     const viagemR = await this.prisma.viagem.update({
       where: {
-        codTaxi: data.codViagem,
+        codViagem: data.codViagem,
       },
       data,
     });

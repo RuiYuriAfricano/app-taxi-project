@@ -7,36 +7,36 @@ import {
   Delete,
   Controller,
 } from '@nestjs/common';
-import { ClienteService } from './taxi.service';
-import { AddClienteDto } from './dto/addClienteDto';
-import { UpdateClienteDto } from './dto/updateClienteDto';
+import { TaxiService } from './taxi.service';
+import { AddTaxiDto } from './dto/addTaxiDto';
+import { UpdateTaxiDto } from './dto/updateTaxiDto';
 
-@Controller('cliente')
-export class ClienteController {
-  constructor(private clienteService: ClienteService) { }
+@Controller('taxi')
+export class TaxiController {
+  constructor(private taxiService: TaxiService) { }
 
   @Post()
-  add(@Body() data: AddClienteDto) {
-    return this.clienteService.add(data);
+  add(@Body() data: AddTaxiDto) {
+    return this.taxiService.add(data);
   }
 
   @Put()
-  update(@Body() data: UpdateClienteDto) {
-    return this.clienteService.update(data);
+  update(@Body() data: UpdateTaxiDto) {
+    return this.taxiService.update(data);
   }
 
-  @Delete(':clienteEmail')
-  remove(@Param('clienteEmail') clienteEmail: string) {
-    return this.clienteService.remove(clienteEmail);
+  @Delete(':codTaxi')
+  remove(@Param('codTaxi') codTaxi: number) {
+    return this.taxiService.remove(codTaxi);
   }
 
-  @Get(':clienteEmail')
-  getOne(@Param('clienteEmail') clienteEmail: string) {
-    return this.clienteService.getOne(clienteEmail);
+  @Get(':codTaxi')
+  getOne(@Param('codTaxi') codTaxi: number) {
+    return this.taxiService.getOne(codTaxi);
   }
 
   @Get()
   getAll() {
-    return this.clienteService.getAll();
+    return this.taxiService.getAll();
   }
 }

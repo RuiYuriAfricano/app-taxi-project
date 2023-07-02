@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Jun-2023 às 14:57
+-- Tempo de geração: 02-Jul-2023 às 02:55
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.0.28
 
@@ -16,10 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
-
-create database dbtaxi;
-use dbtaxi;
 
 --
 -- Banco de dados: `dbtaxi`
@@ -60,6 +56,13 @@ CREATE TABLE `empresa` (
   `codEmpresa` int(11) NOT NULL,
   `nomeEmpresa` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `empresa`
+--
+
+INSERT INTO `empresa` (`codEmpresa`, `nomeEmpresa`) VALUES
+(1, 'empresa1');
 
 -- --------------------------------------------------------
 
@@ -180,6 +183,34 @@ ALTER TABLE `viagem`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `empresa`
+--
+ALTER TABLE `empresa`
+  MODIFY `codEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `motoristataxi`
+--
+ALTER TABLE `motoristataxi`
+  MODIFY `codMotoristaTaxi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `taxi`
+--
+ALTER TABLE `taxi`
+  MODIFY `codTaxi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `viagem`
+--
+ALTER TABLE `viagem`
+  MODIFY `codViagem` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Restrições para despejos de tabelas
 --
 
@@ -213,7 +244,6 @@ ALTER TABLE `taxi`
 -- Limitadores para a tabela `viagem`
 --
 ALTER TABLE `viagem`
-  ADD CONSTRAINT `viagem_ibfk_1` FOREIGN KEY (`id_motoristaTaxi`) REFERENCES `motoristataxi` (`codMotoristaTaxi`),
   ADD CONSTRAINT `viagem_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`email`);
 COMMIT;
 

@@ -1,10 +1,11 @@
+
 <!doctype html>
 <html lang="en">
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Táxis</title>
+        <title>Empresas de taxi</title>
         <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
         <link rel="stylesheet" href="../assets/css/styles.min.css" />
     </head>
@@ -138,120 +139,47 @@
                 <div class="container-fluid">
                     <!--  Row 1 -->
                     <div class="row">
-                        <div class="align-items-strech">
-                            <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="true">Listagem</button>
-                                    <button class="nav-link " id="nav-new-tab" data-bs-toggle="tab" data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new" aria-selected="false">Novo</button>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab" tabindex="0">
-                                    <div class="card">
+                          
+                               <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Novo táxi</h5>
+                                            <h5 class="card-title fw-semibold mb-4">Editar</h5>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form action="../controllers/actionTaxi.php" method="post">
+                                                    <?php
+                                                    $filterId = filter_input(INPUT_GET, 'id');
+                                                    $id = isset($filterId) ? $filterId : NULL;
+                                                    $filterNome = filter_input(INPUT_GET, 'nome');
+                                                    $nome = isset($filterNome) ? $filterNome : NULL;
+                                                    ?>
+                                                    <form action="../controllers/action.php?op=editar&id=<?php echo $id; ?>" method="post">
                                                         <input type="hidden" name="cadastrar" value="true">
                                                         <div class="mb-3">
-                                                            <label for="area" class="form-label">Tipo De Viatura</label>
-                                                            <select name="tipoDeViatura" class="form-control" id="tipoDeViatura">
-                                                                <option value="Carros ligeiros">Carros ligeiros</option>
-                                                                <option value="Carrinhas de nove lugares" >Carrinhas de nove lugares</option>
-                                                                <option value=" Motorizada">Motorizada</option>
-
-                                                            </select>
+                                                            <label for="nome" class="form-label">Nome:</label>
+                                                            <input type="text" name="nomeEmpresa" class="form-control" id="nomeEmpresa" aria-describedby="nomeHelp" value="<?php echo $nome;?>">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="nome" class="form-label">Velocidade por Kilometros:</label>
-                                                            <input type="number" name="vmPorKM" class="form-control" id="vmPorKM" aria-describedby="nomeHelp">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="apelidos" class="form-label">Preco Base por KM:</label>
-                                                            <input type="number" name="precoBasePorKM" class="form-control" id="precoBasePorKM" aria-describedby="apelidosHelp">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Codigo da Empresa:</label>
-                                                            <input type="number" name="id_empresa" class="form-control" id="id_empresa" aria-describedby="dt_nascHelp">
-                                                        </div>
-                                                        <button type="submit" value="form-submit" id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
+                                                        <button type="submit" value='form-submit' name='form-submit' class="mt-5 btn btn-primary">Confirmar</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab" tabindex="0">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Lista de táxis</h5>
-                                            <div class="d-flex align-items-stretch">
-                                                <div class="card w-100">
-                                                    <div class="card-body p-4">
-                                                        <div class="table-responsive">
-                                                            <table class="table text-nowrap mb-0 align-middle">
-                                                                <thead class="text-dark fs-4">
+                 
+                          </div>
 
-                                                                    <tr>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">ID</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Tipo de Viatura</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Velocidade por Km</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Preco base por Km</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Codigo da Empresa</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0 text-center">
-                                                                            <h6 class="fw-semibold mb-0">Acções</h6>
-                                                                        </th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php
-                                                                    
-                                                                    include_once '../services/TaxiService.php';
-
-                                                                    $service = new TaxiService();
-                                                                    $service->viewTabelaTaxi();
-                                                                    
-                                                                    ?>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            </div>
+                            <div class="py-6 px-6 text-center">
+                                <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="py-6 px-6 text-center">
-                    <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/sidebarmenu.js"></script>
-    <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../assets/js/dashboard.js"></script>
-</body>
+                <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+                <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="../assets/js/sidebarmenu.js"></script>
+                <script src="../assets/js/app.min.js"></script>
+                <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+                <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+                <script src="../assets/js/dashboard.js"></script>
+                </body>
 
-</html>

@@ -1,12 +1,42 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './actor.service';
+import {
+  Get,
+  Put,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Controller,
+} from '@nestjs/common';
+import { ActorService } from './actor.service';
+import { AddActorDto } from './dto/addActorDto';
+import { UpdateActorDto } from './dto/updateActorDto';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) { }
+@Controller('actor')
+export class ActorController {
+  constructor(private actorService: ActorService) { }
+
+  @Post()
+  add(@Body() data: AddActorDto) {
+    return this.actorService.add(data);
+  }
+
+  @Put()
+  update(@Body() data: UpdateActorDto) {
+    return this.actorService.update(data);
+  }
+
+  @Delete(':email')
+  remove(@Param('email') email: string) {
+    return this.actorService.remove(email);
+  }
+
+  @Get(':email')
+  getOne(@Param('email') email: string) {
+    return this.actorService.getOne(email);
+  }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getAll() {
+    return this.actorService.getAll();
   }
 }

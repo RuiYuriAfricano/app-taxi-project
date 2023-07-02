@@ -1,55 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { AddClienteDto } from './dto/addClienteDto';
-import { UpdateClienteDto } from './dto/updateClienteDto';
+import { AddTaxiDto } from './dto/addTaxiDto';
+import { UpdateTaxiDto } from './dto/updateTaxiDto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class ClienteService {
+export class TaxiService {
   constructor(private prisma: PrismaService) { }
 
-  async add(data: AddClienteDto) {
-    const newCliente = await this.prisma.cliente.create(
+  async add(data: AddTaxiDto) {
+    const newTaxi = await this.prisma.taxi.create(
       {
         data,
       }
     )
-    return newCliente;
+    return newTaxi;
   }
 
-  async update(data: UpdateClienteDto) {
-
-    const clienteR = await this.prisma.cliente.update({
+  async update(data: UpdateTaxiDto) {
+    data.codTaxi = Number(data?.codTaxi);
+    const taxiR = await this.prisma.taxi.update({
       where: {
-        clienteEmail: data.clienteEmail,
+        codTaxi: data.codTaxi,
       },
       data,
     });
 
-    return clienteR;
+    return taxiR;
   }
 
-  async remove(clienteEmail: string) {
-    const response = await this.prisma.cliente.delete({
-      where: { clienteEmail },
+  async remove(codTaxi: number) {
+    const response = await this.prisma.taxi.delete({
+      where: { codTaxi },
     });
 
     return response;
   }
 
-  async getOne(clienteEmail: string) {
-    const clienteR = await this.prisma.cliente.findUnique({
+  async getOne(codTaxi: number) {
+    const taxiR = await this.prisma.taxi.findUnique({
       where: {
-        clienteEmail,
+        codTaxi,
       },
     });
 
-    return clienteR;
+    return taxiR;
   }
 
   async getAll() {
-    const clientesR = await this.prisma.cliente.findMany();
+    const taxisR = await this.prisma.taxi.findMany();
 
-    return clientesR;
+    return taxisR;
   }
 
 }

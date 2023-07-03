@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Motoristas</title>
+        <title>Viaturas-utec</title>
         <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
         <link rel="stylesheet" href="../assets/css/styles.min.css" />
     </head>
@@ -60,7 +60,7 @@
                                     <span class="hide-menu">Táxis</span>
                                 </a>
                             </li>
-                              <li class="sidebar-item">
+                            <li class="sidebar-item">
                                 <a class="sidebar-link" href="./viaturas.php" aria-expanded="false">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -151,58 +151,75 @@
                 <div class="container-fluid">
                     <!--  Row 1 -->
                     <div class="row">
-                        
-                         <?php
-                                                    $filterId = filter_input(INPUT_GET, 'email');
-                                                    $email = isset($filterId) ? $filterId : NULL;
-                                                    $filterNome = filter_input(INPUT_GET, 'morada');
-                                                    $morada = isset($filterNome) ? $filterNome : NULL;
-                                                    $filterVm = filter_input(INPUT_GET, 'datanasc');
-                                                    $data = isset($filterVm) ? $filterVm : NULL;
-                                                    $filterP = filter_input(INPUT_GET, 'destreza');
-                                                    $destreza = isset($filterP) ? $filterP : NULL;
-                                                    $filterE = filter_input(INPUT_GET, 'empresa');
-                                                    $empresa = isset($filterE) ? $filterE : NULL;
-                                                    ?>
-                        
-                              <div class="card">
+                        <div class="align-items-strech">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="true">Listagem</button>
+                                    <button class="nav-link " id="nav-new-tab" data-bs-toggle="tab" data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new" aria-selected="false">Novo</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab" tabindex="0">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Editar</h5>
+                                            <h5 class="card-title fw-semibold mb-4">Novo Tipo de Viatura</h5>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form action="../controllers/actionMotorista.php?op=editar&email=<?php echo $email ?>" method="post">
+                                                    <form action="../controllers/actionTaxi.php?op=novotipo" method="post">
                                                         <input type="hidden" name="cadastrar" value="true">
                                                         <div class="mb-3">
-                                                            <label for="nome" class="form-label">Email</label>
-                                                            <input type="email" name="email" class="form-control" id="email" aria-describedby="nomeHelp" value="<?php echo $email?> " disabled="">
+                                                            <label for="nome" class="form-label">Tipo:</label>
+                                                            <input type="text" name="tipo" class="form-control" id="tipo" aria-describedby="nomeHelp">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="apelidos" class="form-label">Morada</label>
-                                                            <input type="text" name="morada" class="form-control" id="morada" aria-describedby="apelidosHelp" value="<?php echo $morada?> ">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Data de Nascimento</label>
-                                                            <input type="date" name="datanasc" class="form-control" id="datanasc" aria-describedby="dt_nascHelp" value="<?php echo $datanasc?>">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Destreza</label>
-                                                            <input type="text" name="destreza" class="form-control" id="destreza" aria-describedby="dt_nascHelp" value="<?php echo $destreza?>">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Numero da empresa</label>
-                                                            <input type="number" name="id_empresa" class="form-control" id="id_empresa" aria-describedby="dt_nascHelp" value="<?php echo $empresa?>">
-                                                        </div>
-
-                                                        <button type="submit" value="form-submit " id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
+                                                        <button type="submit" value='form-submit' name='form-submit' class="mt-5 btn btn-primary">Confirmar</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                               
+                                <div class="tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab" tabindex="0">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-semibold mb-4">Tipo de Viaturas</h5>
+                                            <div class="d-flex align-items-stretch">
+                                                <div class="card w-100">
+                                                    <div class="card-body p-4">
+                                                        <div class="table-responsive">
+                                                            <table class="table text-nowrap mb-0 align-middle">
+                                                                <thead class="text-dark fs-4">
+                                                                    <tr>
+                                                                        <th class="border-bottom-0">
+                                                                            <h6 class="fw-semibold mb-0">N*</h6>
+                                                                        </th>
+                                                                        <th class="border-bottom-0">
+                                                                            <h6 class="fw-semibold mb-0">Nome</h6>
+                                                                        </th>
 
-                          
+                                                                        
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    include_once '../services/TaxiService.php';
+
+                                                                    $service = new TaxiService();
+                                                                    $service->viewTabelaTipo();
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="py-6 px-6 text-center">
                     <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
@@ -220,4 +237,3 @@
 </body>
 
 </html>
-

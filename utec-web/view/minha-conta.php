@@ -60,6 +60,19 @@
                 <span class="hide-menu">Táxis</span>
               </a>
             </li>
+              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./viaturas.php" aria-expanded="false">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 12v.01"></path>
+                                        <path d="M3 21h18"></path>
+                                        <path d="M6 21v-16a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v16"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="hide-menu">Viaturas</span>
+                                </a>
+                            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./motoristas.php" aria-expanded="false">
                 <span>
@@ -161,76 +174,28 @@
                             <table class="table text-nowrap mb-0 align-middle">
                               <thead class="text-dark fs-4">
                                 <tr>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Id</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nome</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Apelidos</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nascimento</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Horário</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Custo</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Area</h6>
+                                  <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Email</h6>
                                   </th>
                                   <th class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0">Acções</h6>
+                                    <h6 class="fw-semibold mb-0">Contactos</h6>
+                                  </th>
+                                  <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Acessos a conta</h6>
                                   </th>
                                 </tr>
                               </thead>
                               <tbody>
-                                
                                   <tr>
-                                  <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">' . $item['cod_obreiro'] . '</h6>
+                                  <td class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0 text-center">utec@gmail.com</h6>
                                   </td>
-                                  <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">' . $item['nome'] . '</h6> 
+                                 
+                                  <td class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">+244 900 000 000</h6>  
                                   </td>
-                                  <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal">' . $item['apelidos'] . '</p>
-                                  </td>
-                                  <td class="border-bottom-0">
-                                  <p class="mb-0 fw-normal">' . $item['data_nasc'] . '</p>
-                                  </td>
-                                  <td class="border-bottom-0">
-                                  <p class="mb-0 fw-normal">' . $item['horario'] . '</p>
-                                  </td>
-                                  <td class="border-bottom-0">
-                                  <p class="mb-0 fw-normal">' . $item['custo'] . '</p>
-                                  </td>
-                                  <td class="border-bottom-0">
-                                  <p class="mb-0 fw-normal">' . $item['area'] . '</p>
-                                  </td>
-                                  <td class="border-bottom-0">
-                                    <div class="d-flex justify-content-evenly align-items-center">
-                                      <a href="obreiroAE.php?editar=true&id='.$item['cod_obreiro'].'" class="mb-0 fw-normal btn btn-info">
-                                        <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar Obreiro" class="icon icon-tabler icon-tabler-edit" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                                          <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                          </path>
-                                          <path d="M16 5l3 3"></path>
-                                        </svg>
-                                      </a>
-                                      <a href="?eliminar=true&id='.$item['cod_obreiro'].'" class="mb-0 fw-normal btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Obreiro" class="icon icon-tabler icon-tabler-eraser" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3">
-                                          </path>
-                                          <path d="M18 13.3l-6.3 -6.3"></path>
-                                        </svg> 
-                                      </a>
-                                    </div>
+                                  <td class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Jose N'Donge , Julia Camana, Rui Malemba</h6>  
                                   </td>
                                 </tr>
                               </tbody>

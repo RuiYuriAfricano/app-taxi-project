@@ -36,7 +36,10 @@ class TaxiController {
                 $this->inserirTaxi();
             }else if ($op == 'editar') {
                 $this->editarTaxi($id);
-            }else if ( $op == 'tabela') {
+            }else if ($op == 'novotipo') {
+                $this->inserirTipo();
+            }
+            else if ( $op == 'tabela') {
                 $this->verTabela();
             } else if ($op == 'eliminar') {
                 $this->eliminarTaxi();
@@ -74,6 +77,27 @@ class TaxiController {
         }
 
         include '../view/taxis.php';
+    }
+     public function inserirTipo() {
+
+        $tipo= '';
+        
+      
+      $errors = array();
+
+        if (isset($_POST['form-submit'])) {
+
+            $tipo = isset($_POST['tipo']) ? filter_input(INPUT_POST, 'tipo') : NULL;
+            try {
+                $this->taxiService->inserirTipo($tipo);
+                $this->redirect('../view/viaturas.php');
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+        }
+
+        include '../view/viaturas.php';
     }
     
     

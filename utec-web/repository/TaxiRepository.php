@@ -21,7 +21,7 @@ class TaxiRepository {
     public function inserirTaxi($tipoDeViatura, $vmPorKM, $precoBasePorKM, $id_empresa) {
 
         try {
-            $stmt = $this->db->prepare("INSERT INTO taxi (x, y, tipoDeViatura, vmPorKM, precoBasePorKM, disponiblidade, filaEspera, id_empresa) VALUES('0', '0', :tipoDeViatura, :vmPorKM, :precoBasePorKM,'Disponivel','0', :id_empresa )");
+            $stmt = $this->db->prepare("INSERT INTO taxi (x, y, id_TDV, vmPorKM, precoBasePorKM, disponiblidade, filaEspera, id_empresa) VALUES('0', '0', :tipoDeViatura, :vmPorKM, :precoBasePorKM,'Disponivel','0', :id_empresa )");
             $stmt->bindparam(":tipoDeViatura", $tipoDeViatura);
             $stmt->bindparam(":vmPorKM", $vmPorKM);
             $stmt->bindparam(":precoBasePorKM", $precoBasePorKM);
@@ -35,11 +35,24 @@ class TaxiRepository {
             return false;
         }
     }
+      public function inserirTipo($tipoDeViatura) {
+
+        try {
+            $stmt = $this->db->prepare("INSERT INTO tipodeviatura (tipo) VALUES(:tipoDeViatura )");
+            $stmt->bindparam(":tipoDeViatura", $tipoDeViatura); 
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 
     public function editarTaxi($id, $tipo, $velocidade, $preco, $codEmpresa) {
 
         try {
-             $stmt = $this->db->prepare("Update taxi set tipoDeViatura=:tipoDeViatura, vmPorKM=:vmPorKM, precoBasePorKM=:precoBasePorKM, id_empresa=:id_empresa where codTaxi = :id ");
+             $stmt = $this->db->prepare("Update taxi set id_TDV =:tipoDeViatura, vmPorKM=:vmPorKM, precoBasePorKM=:precoBasePorKM, id_empresa=:id_empresa where codTaxi = :id ");
             $stmt->bindparam(":tipoDeViatura", $tipo);
             $stmt->bindparam(":vmPorKM", $velocidade);
             $stmt->bindparam(":precoBasePorKM", $preco);
@@ -88,10 +101,38 @@ class TaxiRepository {
 
         return new Taxi($taxi['codEmpresa'], $taxi['nomeEmpresa']);
     }
+    
+    public function selectTDV(){
+       $stmt = $this->db->prepare("SELECT * FROM tipodeviatura ");
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                <option value="<?php echo $row['codTDV']; ?>"><?php echo $row['tipo']; ?></option>
+                <?php
+            }
+        }
+    }
+    
+       public function selectEmpresa(){
+       $stmt = $this->db->prepare("SELECT * FROM empresa ");
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                <option value="<?php echo $row['codEmpresa']; ?>"><?php echo $row['nomeEmpresa']; ?></option>
+                <?php
+            }
+        }
+    }
+    
+      
 
     public function viewTabelaTaxi() {
         $taxi = Array();
-        $stmt = $this->db->prepare("SELECT * FROM taxi");
+        $stmt = $this->db->prepare("SELECT * FROM taxi_lista");
         $stmt->execute();
         $result = $stmt->fetchAll();
         foreach ($result as $taxi) {
@@ -101,7 +142,7 @@ class TaxiRepository {
                     <h6 class="fw-semibold mb-0"><?php echo $taxi['codTaxi'] ?></h6>
                 </td>
                 <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1"><?Php echo $taxi['tipoDeViatura'] ?></h6> 
+                    <h6 class="fw-semibold mb-1"><?Php echo $taxi['tipo'] ?></h6> 
                 </td>
                 <td class="border-bottom-0">
                     <h6 class="fw-semibold mb-1"><?Php echo $taxi['vmPorKM'] ?></h6>
@@ -116,7 +157,7 @@ class TaxiRepository {
             </td>
             <td class="border-bottom-0">
                 <div class="d-flex justify-content-evenly align-items-center">
-                    <a href="../view/taxi-editar.php?id=<?Php echo $taxi['codTaxi'] ?> &tipo=<?Php echo $taxi['tipoDeViatura']?>&velocidade=<?Php echo $taxi['vmPorKM'] ?>&preco=<?Php echo $taxi['precoBasePorKM'] ?>&empresa=<?Php echo $taxi['id_empresa'] ?>" class="mb-0 fw-normal btn btn-info">
+                    <a href="../view/taxi-editar.php?id=<?Php echo $taxi['codTaxi'] ?> &tipo=<?Php echo $taxi['id_TDV']?>&velocidade=<?Php echo $taxi['vmPorKM'] ?>&preco=<?Php echo $taxi['precoBasePorKM'] ?>&empresa=<?Php echo $taxi['id_empresa'] ?>" class="mb-0 fw-normal btn btn-info">
                         <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar Obreiro" class="icon icon-tabler icon-tabler-edit" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
@@ -136,6 +177,30 @@ class TaxiRepository {
                 </div>   
             </td>
             </tr>
+            <?php
+        }
+    }
+    
+      public function viewTabelaTipo() {
+        $empresa = Array();
+        $stmt = $this->db->prepare("SELECT * FROM tipodeviatura");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        foreach ($result as $empresa) {
+            ?>
+
+            <tr>
+                <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0"><?php echo $empresa['codTDV'] ?></h6>
+                </td>
+                <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1"><?Php echo $empresa['tipo'] ?></h6> 
+                </td>
+            </td>
+          
+            </tr>
+
+
             <?php
         }
     }

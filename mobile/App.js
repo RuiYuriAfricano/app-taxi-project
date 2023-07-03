@@ -1,3 +1,5 @@
+import "react-native-gesture-handler";
+
 import { StatusBar } from "expo-status-bar";
 import { RootRouter } from "./src/routes";
 import { AppProvider } from "./src/context/app";

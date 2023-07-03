@@ -4,9 +4,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class ClienteService {
     private prisma;
     constructor(prisma: PrismaService);
-    add(data: AddClienteDto): Promise<import(".prisma/client").cliente>;
-    update(data: UpdateClienteDto): Promise<import(".prisma/client").cliente>;
-    remove(clienteEmail: string): Promise<import(".prisma/client").cliente>;
-    getOne(clienteEmail: string): Promise<import(".prisma/client").cliente>;
-    getAll(): Promise<import(".prisma/client").cliente[]>;
+    add(data: AddClienteDto): unknown;
+    update(data: UpdateClienteDto): unknown;
+    remove(clienteEmail: string): unknown;
+    getOne(clienteEmail: string): unknown;
+    getAll(): unknown;
 }

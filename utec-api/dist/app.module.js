@@ -15,13 +15,12 @@ const motorista_module_1 = require("./motorista/motorista.module");
 const motoristaTaxi_module_1 = require("./motorista-taxi/motoristaTaxi.module");
 const taxi_module_1 = require("./taxi/taxi.module");
 const viagem_module_1 = require("./viagem/viagem.module");
-let AppModule = class AppModule {
+let AppModule = exports.AppModule = class AppModule {
 };
-AppModule = __decorate([
+exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [actor_module_1.ActorModule, cliente_module_1.ClienteModule, motorista_module_1.MotoristaModule, motoristaTaxi_module_1.MotoristaTaxiModule, taxi_module_1.TaxiModule, viagem_module_1.ViagemModule],
         providers: [prisma_service_1.PrismaService],
     })
 ], AppModule);
-exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

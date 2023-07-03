@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const motoristaTaxi_service_1 = require("./motoristaTaxi.service");
 const addMotoristaTaxiDto_1 = require("./dto/addMotoristaTaxiDto");
 const updateMotoristaTaxiDto_1 = require("./dto/updateMotoristaTaxiDto");
-let MotoristaTaxiController = class MotoristaTaxiController {
+let MotoristaTaxiController = exports.MotoristaTaxiController = class MotoristaTaxiController {
     constructor(motoristaTaxiService) {
         this.motoristaTaxiService = motoristaTaxiService;
     }
@@ -71,9 +71,8 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotoristaTaxiController.prototype, "getAll", null);
-MotoristaTaxiController = __decorate([
+exports.MotoristaTaxiController = MotoristaTaxiController = __decorate([
     (0, common_1.Controller)('motoristaTaxi'),
     __metadata("design:paramtypes", [motoristaTaxi_service_1.MotoristaTaxiService])
 ], MotoristaTaxiController);
-exports.MotoristaTaxiController = MotoristaTaxiController;
 //# sourceMappingURL=motoristaTaxi.controller.js.map

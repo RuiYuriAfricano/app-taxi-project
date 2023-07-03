@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ViagemService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let ViagemService = class ViagemService {
+let ViagemService = exports.ViagemService = class ViagemService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -51,9 +51,8 @@ let ViagemService = class ViagemService {
         return viagensR;
     }
 };
-ViagemService = __decorate([
+exports.ViagemService = ViagemService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], ViagemService);
-exports.ViagemService = ViagemService;
 //# sourceMappingURL=viagem.service.js.map

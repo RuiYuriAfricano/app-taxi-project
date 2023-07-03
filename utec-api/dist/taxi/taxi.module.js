@@ -11,14 +11,13 @@ const common_1 = require("@nestjs/common");
 const taxi_controller_1 = require("./taxi.controller");
 const taxi_service_1 = require("./taxi.service");
 const prisma_service_1 = require("../prisma/prisma.service");
-let TaxiModule = class TaxiModule {
+let TaxiModule = exports.TaxiModule = class TaxiModule {
 };
-TaxiModule = __decorate([
+exports.TaxiModule = TaxiModule = __decorate([
     (0, common_1.Module)({
         imports: [],
         controllers: [taxi_controller_1.TaxiController],
         providers: [taxi_service_1.TaxiService, prisma_service_1.PrismaService],
     })
 ], TaxiModule);
-exports.TaxiModule = TaxiModule;
 //# sourceMappingURL=taxi.module.js.map

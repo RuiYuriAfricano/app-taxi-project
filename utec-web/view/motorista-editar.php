@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Táxis</title>
+        <title>Motoristas</title>
         <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
         <link rel="stylesheet" href="../assets/css/styles.min.css" />
     </head>
@@ -138,106 +138,58 @@
                 <div class="container-fluid">
                     <!--  Row 1 -->
                     <div class="row">
-                        <div class="align-items-strech">
-                            <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="true">Listagem</button>
-                                    <button class="nav-link " id="nav-new-tab" data-bs-toggle="tab" data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new" aria-selected="false">Novo</button>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab" tabindex="0">
-                                    <div class="card">
+                        
+                         <?php
+                                                    $filterId = filter_input(INPUT_GET, 'email');
+                                                    $email = isset($filterId) ? $filterId : NULL;
+                                                    $filterNome = filter_input(INPUT_GET, 'morada');
+                                                    $morada = isset($filterNome) ? $filterNome : NULL;
+                                                    $filterVm = filter_input(INPUT_GET, 'datanasc');
+                                                    $data = isset($filterVm) ? $filterVm : NULL;
+                                                    $filterP = filter_input(INPUT_GET, 'destreza');
+                                                    $destreza = isset($filterP) ? $filterP : NULL;
+                                                    $filterE = filter_input(INPUT_GET, 'empresa');
+                                                    $empresa = isset($filterE) ? $filterE : NULL;
+                                                    ?>
+                        
+                              <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Novo táxi</h5>
+                                            <h5 class="card-title fw-semibold mb-4">Editar</h5>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form action="../controllers/actionTaxi.php" method="post">
+                                                    <form action="../controllers/actionMotorista.php?op=editar&email=<?php echo $email ?>" method="post">
                                                         <input type="hidden" name="cadastrar" value="true">
                                                         <div class="mb-3">
-                                                            <label for="area" class="form-label">Tipo De Viatura</label>
-                                                            <select name="tipoDeViatura" class="form-control" id="tipoDeViatura">
-                                                                <option value="Carros ligeiros">Carros ligeiros</option>
-                                                                <option value="Carrinhas de nove lugares" >Carrinhas de nove lugares</option>
-                                                                <option value=" Motorizada">Motorizada</option>
+                                                            <label for="nome" class="form-label">Email</label>
+                                                            <input type="email" name="email" class="form-control" id="email" aria-describedby="nomeHelp" value="<?php echo $email?> " disabled="">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="apelidos" class="form-label">Morada</label>
+                                                            <input type="text" name="morada" class="form-control" id="morada" aria-describedby="apelidosHelp" value="<?php echo $morada?> ">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="dt_nasc" class="form-label">Data de Nascimento</label>
+                                                            <input type="date" name="datanasc" class="form-control" id="datanasc" aria-describedby="dt_nascHelp" value="<?php echo $datanasc?>">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="dt_nasc" class="form-label">Destreza</label>
+                                                            <input type="text" name="destreza" class="form-control" id="destreza" aria-describedby="dt_nascHelp" value="<?php echo $destreza?>">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="dt_nasc" class="form-label">Numero da empresa</label>
+                                                            <input type="number" name="id_empresa" class="form-control" id="id_empresa" aria-describedby="dt_nascHelp" value="<?php echo $empresa?>">
+                                                        </div>
 
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="nome" class="form-label">Velocidade por Kilometros:</label>
-                                                            <input type="number" name="vmPorKM" class="form-control" id="vmPorKM" aria-describedby="nomeHelp">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="apelidos" class="form-label">Preco Base por KM:</label>
-                                                            <input type="number" name="precoBasePorKM" class="form-control" id="precoBasePorKM" aria-describedby="apelidosHelp">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Codigo da Empresa:</label>
-                                                            <input type="number" name="id_empresa" class="form-control" id="id_empresa" aria-describedby="dt_nascHelp">
-                                                        </div>
-                                                        <button type="submit" value="form-submit" id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
+                                                        <button type="submit" value="form-submit " id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab" tabindex="0">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Lista de táxis</h5>
-                                            <div class="d-flex align-items-stretch">
-                                                <div class="card w-100">
-                                                    <div class="card-body p-4">
-                                                        <div class="table-responsive">
-                                                            <table class="table text-nowrap mb-0 align-middle">
-                                                                <thead class="text-dark fs-4">
+                               
 
-                                                                    <tr>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">ID</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Tipo de Viatura</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Velocidade por Km</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Preco base por Km</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Codigo da Empresa</h6>
-                                                                        </th>
-                                                                        <th class="border-bottom-0 text-center">
-                                                                            <h6 class="fw-semibold mb-0">Acções</h6>
-                                                                        </th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php
-                                                                    
-                                                                    include_once '../services/TaxiService.php';
-
-                                                                    $service = new TaxiService();
-                                                                    $service->viewTabelaTaxi();
-                                                                    
-                                                                    ?>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
+                          
                 </div>
                 <div class="py-6 px-6 text-center">
                     <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
@@ -255,3 +207,4 @@
 </body>
 
 </html>
+

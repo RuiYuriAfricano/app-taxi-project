@@ -15,65 +15,68 @@ export class ViagemService {
 
   async add(data: AddViagemDto) {
 
-    //Consultar o código do taxi na tabela motoristaTaxi
-    const prisma = new PrismaService();
-    const mTaxiService = new MotoristaTaxiService(prisma);
-    const mtaxiController = new MotoristaTaxiController(mTaxiService);
-    const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
+    //estadoViagem pode ser: instantanea, marcada, satisfeita
+    if (data.estadoViagem === "instantanea") {
+      //Consultar o código do taxi na tabela motoristaTaxi
+      const prisma = new PrismaService();
+      const mTaxiService = new MotoristaTaxiService(prisma);
+      const mtaxiController = new MotoristaTaxiController(mTaxiService);
+      const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
 
-    //Chamar o método estimar
+      //Chamar o método estimar
 
-    let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
+      let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
 
-    /*
-    fiabilidade: 1-5
-    fiabilidade baixa: significa que o carro pode ou está mais próximo de cumprir
-    o tempo estimado.
-    fiabilidade alta: significa o oposto.
+      /*
+      fiabilidade: 1-5
+      fiabilidade baixa: significa que o carro pode ou está mais próximo de cumprir
+      o tempo estimado.
+      fiabilidade alta: significa o oposto.
+  
+      condicionantes:
+      bom-clima = 1
+      chuva = 10
+      transito = 7
+  
+      destreza: [1-3] 
+      1-junior
+      2-pleno
+      3-senior 
+      */
 
-    condicionantes:
-    bom-clima = 1
-    chuva = 10
-    transito = 7
+      //consultar na tabela motorista a sua destreza
+      const motoristaService = new MotoristaService(prisma);
+      const motoristaController = new MotoristaController(motoristaService);
+      const motorista = await motoristaController.getOne(mTaxi.id_motorista);
 
-    destreza: [1-3] 
-    1-junior
-    2-pleno
-    3-senior 
-    */
+      //******************************************************
 
-    //consultar na tabela motorista a sua destreza
-    const motoristaService = new MotoristaService(prisma);
-    const motoristaController = new MotoristaController(motoristaService);
-    const motorista = await motoristaController.getOne(mTaxi.id_motorista);
+      let precoReal = estimacao['preco'];
+      const destreza = motorista.destreza;
+      const fiabilidade = Math.floor(Math.random() * 5) + 1; //[1 - 5]
+      const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
+      const calc = Number(tempoReal) - Number(estimacao['tempo']);
+      const diferencaDeTempo = calc > 0 ? calc : calc * -1;
 
-    //******************************************************
+      //consultar na tabela taxi com codTAxi
+      const taxiService = new TaxiService(prisma);
+      const taxiController = new TaxiController(taxiService);
+      const taxi = await taxiController.getOne(mTaxi.id_taxi);
 
-    let precoReal = estimacao['preco'];
-    const destreza = motorista.destreza;
-    const fiabilidade = Math.floor(Math.random() * 5) + 1; //[1 - 5]
-    const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
-    const calc = Number(tempoReal) - Number(estimacao['tempo']);
-    const diferencaDeTempo = calc > 0 ? calc : calc * -1;
+      if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
 
-    //consultar na tabela taxi com codTAxi
-    const taxiService = new TaxiService(prisma);
-    const taxiController = new TaxiController(taxiService);
-    const taxi = await taxiController.getOne(mTaxi.id_taxi);
+        const distancia = taxi.vmPorKM * diferencaDeTempo;
 
-    if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
+        precoReal = taxi.precoBasePorKM * distancia;
+      }
 
-      const distancia = taxi.vmPorKM * diferencaDeTempo;
+      data.tempoEstimado = estimacao['tempo'];
+      data.tempoReal = tempoReal.toString();
+      data.custoEstimado = estimacao['tempo'];
+      data.custoFinal = precoReal;
+      data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
 
-      precoReal = taxi.precoBasePorKM * distancia;
     }
-
-    data.tempoEstimado = estimacao['tempo'];
-    data.tempoReal = tempoReal.toString();
-    data.custoEstimado = estimacao['tempo'];
-    data.custoFinal = precoReal;
-    data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
-
 
     const newViagem = await this.prisma.viagem.create(
       {
@@ -85,6 +88,71 @@ export class ViagemService {
 
   async update(data: UpdateViagemDto) {
     data.codViagem = Number(data?.codViagem);
+
+    //estadoViagem pode ser: instantanea, marcada, satisfeita
+    // data.custoFinal.toString().trim().length = 0 se a viagem está marcada
+    if (data.custoFinal.toString().trim().length === 0) {
+      //Consultar o código do taxi na tabela motoristaTaxi
+      const prisma = new PrismaService();
+      const mTaxiService = new MotoristaTaxiService(prisma);
+      const mtaxiController = new MotoristaTaxiController(mTaxiService);
+      const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
+
+      //Chamar o método estimar
+
+      let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
+
+      /*
+      fiabilidade: 1-5
+      fiabilidade baixa: significa que o carro pode ou está mais próximo de cumprir
+      o tempo estimado.
+      fiabilidade alta: significa o oposto.
+  
+      condicionantes:
+      bom-clima = 1
+      chuva = 10
+      transito = 7
+  
+      destreza: [1-3] 
+      1-junior
+      2-pleno
+      3-senior 
+      */
+
+      //consultar na tabela motorista a sua destreza
+      const motoristaService = new MotoristaService(prisma);
+      const motoristaController = new MotoristaController(motoristaService);
+      const motorista = await motoristaController.getOne(mTaxi.id_motorista);
+
+      //******************************************************
+
+      let precoReal = estimacao['preco'];
+      const destreza = motorista.destreza;
+      const fiabilidade = Math.floor(Math.random() * 5) + 1; //[1 - 5]
+      const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
+      const calc = Number(tempoReal) - Number(estimacao['tempo']);
+      const diferencaDeTempo = calc > 0 ? calc : calc * -1;
+
+      //consultar na tabela taxi com codTAxi
+      const taxiService = new TaxiService(prisma);
+      const taxiController = new TaxiController(taxiService);
+      const taxi = await taxiController.getOne(mTaxi.id_taxi);
+
+      if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
+
+        const distancia = taxi.vmPorKM * diferencaDeTempo;
+
+        precoReal = taxi.precoBasePorKM * distancia;
+      }
+
+      data.tempoEstimado = estimacao['tempo'];
+      data.tempoReal = tempoReal.toString();
+      data.custoEstimado = estimacao['tempo'];
+      data.custoFinal = precoReal;
+      data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
+
+    }
+
     const viagemR = await this.prisma.viagem.update({
       where: {
         codViagem: data.codViagem,

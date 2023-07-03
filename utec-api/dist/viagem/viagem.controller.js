@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const viagem_service_1 = require("./viagem.service");
 const addViagemDto_1 = require("./Dto/addViagemDto");
 const updateViagemDto_1 = require("./Dto/updateViagemDto");
-let ViagemController = exports.ViagemController = class ViagemController {
+let ViagemController = class ViagemController {
     constructor(viagemService) {
         this.viagemService = viagemService;
     }
@@ -71,8 +71,9 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ViagemController.prototype, "getAll", null);
-exports.ViagemController = ViagemController = __decorate([
+ViagemController = __decorate([
     (0, common_1.Controller)('viagem'),
     __metadata("design:paramtypes", [viagem_service_1.ViagemService])
 ], ViagemController);
+exports.ViagemController = ViagemController;
 //# sourceMappingURL=viagem.controller.js.map

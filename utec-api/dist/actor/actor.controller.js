@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const actor_service_1 = require("./actor.service");
 const addActorDto_1 = require("./dto/addActorDto");
 const updateActorDto_1 = require("./dto/updateActorDto");
-let ActorController = exports.ActorController = class ActorController {
+let ActorController = class ActorController {
     constructor(actorService) {
         this.actorService = actorService;
     }
@@ -82,8 +82,9 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ActorController.prototype, "getAll", null);
-exports.ActorController = ActorController = __decorate([
+ActorController = __decorate([
     (0, common_1.Controller)('actor'),
     __metadata("design:paramtypes", [actor_service_1.ActorService])
 ], ActorController);
+exports.ActorController = ActorController;
 //# sourceMappingURL=actor.controller.js.map

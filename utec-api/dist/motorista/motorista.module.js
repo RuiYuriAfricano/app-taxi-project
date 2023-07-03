@@ -11,13 +11,14 @@ const common_1 = require("@nestjs/common");
 const motorista_controller_1 = require("./motorista.controller");
 const motorista_service_1 = require("./motorista.service");
 const prisma_service_1 = require("../prisma/prisma.service");
-let MotoristaModule = exports.MotoristaModule = class MotoristaModule {
+let MotoristaModule = class MotoristaModule {
 };
-exports.MotoristaModule = MotoristaModule = __decorate([
+MotoristaModule = __decorate([
     (0, common_1.Module)({
         imports: [],
         controllers: [motorista_controller_1.MotoristaController],
         providers: [motorista_service_1.MotoristaService, prisma_service_1.PrismaService],
     })
 ], MotoristaModule);
+exports.MotoristaModule = MotoristaModule;
 //# sourceMappingURL=motorista.module.js.map

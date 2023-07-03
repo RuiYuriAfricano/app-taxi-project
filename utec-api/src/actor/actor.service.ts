@@ -5,19 +5,16 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ActorService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async add(data: AddActorDto) {
-    const newActor = await this.prisma.actor.create(
-      {
-        data,
-      }
-    )
+    const newActor = await this.prisma.actor.create({
+      data,
+    });
     return newActor;
   }
 
   async update(data: UpdateActorDto) {
-
     const actorR = await this.prisma.actor.update({
       where: {
         email: data.email,
@@ -52,6 +49,10 @@ export class ActorService {
         email: email,
         password: password,
       },
+      include: {
+        cliente: true,
+        motorista: true,
+      },
     });
 
     return actorR;
@@ -62,5 +63,4 @@ export class ActorService {
 
     return actoresR;
   }
-
 }

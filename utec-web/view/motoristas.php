@@ -60,6 +60,19 @@
                                     <span class="hide-menu">Táxis</span>
                                 </a>
                             </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./viaturas.php" aria-expanded="false">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 12v.01"></path>
+                                        <path d="M3 21h18"></path>
+                                        <path d="M6 21v-16a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v16"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="hide-menu">Viaturas</span>
+                                </a>
+                            </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="./motoristas.php" aria-expanded="false">
                                     <span>
@@ -171,11 +184,18 @@
                                                             <input type="text" name="destreza" class="form-control" id="destreza" aria-describedby="dt_nascHelp">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="dt_nasc" class="form-label">Numero da empresa</label>
-                                                            <input type="number" name="id_empresa" class="form-control" id="id_empresa" aria-describedby="dt_nascHelp">
-                                                        </div>
+                                                            <label for="area" class="form-label">Selecionar Empresa</label>
+                                                            <select name="id_empresa" class="form-control" id="id_empresa" value="<?php echo $empresa ?>" required>
+                                                                <?php
+                                                                include_once '../repository/TaxiRepository.php';
 
-                                                        <button type="submit" value="form-submit " id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
+                                                                $service = new TaxiRepository();
+                                                                $service->selectEmpresa();
+                                                                ?>
+
+                                                            </select>
+                                                        </div>
+                                                            <button type="submit" value="form-submit " id="form-submit" name="form-submit" class="mt-5 btn btn-primary">Confirmar</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -214,12 +234,12 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <?php
-                                                                    include_once '../services/MotoristaService.php';
+<?php
+include_once '../services/MotoristaService.php';
 
-                                                                    $service = new MotoristaService();
-                                                                    $service->viewTabelaMotorista();
-                                                                    ?>
+$service = new MotoristaService();
+$service->viewTabelaMotorista();
+?>
 
                                                                 </tbody>
                                                             </table>

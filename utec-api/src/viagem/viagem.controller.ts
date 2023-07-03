@@ -20,6 +20,10 @@ export class ViagemController {
     return this.viagemService.add(data);
   }
 
+  @Post()
+  estimar(@Body() codTaxi: number, xOrigem: string, yOrigem: string, xDestino: string, yDestino: string) {
+    return this.viagemService.estimar(codTaxi, xOrigem, yOrigem, xDestino, yDestino);
+  }
   @Put()
   update(@Body() data: UpdateViagemDto) {
     return this.viagemService.update(data);

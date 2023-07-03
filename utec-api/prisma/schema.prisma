@@ -52,11 +52,18 @@ model motoristataxi {
   viagem           viagem[]
 }
 
+model tipoDeViatura {
+  codTDV Int    @id
+  tipo   String
+  taxi   taxi[]
+}
+
 model taxi {
   codTaxi         Int             @id
   x               String
   y               String
-  tipoDeViatura   String
+  id_TDV          Int?
+  tipoviatura     tipoDeViatura?  @relation(fields: [id_TDV], references: [codTDV])
   vmPorKM         Float
   precoBasePorKM  Float
   disponibilidade String
@@ -71,11 +78,13 @@ model viagem {
 
   custoFinal             Float?
   custoEstimado          Float?
-  pontoPartida           String?
-  pontoDestino           String?
+  xPartida               String?
+  yPartida               String?
+  xDestino               String?
+  yDestino               String?
   distanciaPercorrida    Float?
-  tempoEstimado          DateTime?
-  tempoReal              DateTime?
+  tempoEstimado          String?
+  tempoReal              String?
   data                   DateTime?
   factorFiabilidade      String?
   classificacaoMotorista String?

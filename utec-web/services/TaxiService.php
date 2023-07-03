@@ -46,6 +46,15 @@ class TaxiService {
             throw $e;
         }
     }
+     public function inserirTipo($tipo) {
+        try {
+
+            $res = $this->taxiRepository->inserirTipo($tipo);
+            return $res;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 
     public function editar($id, $tipo, $velocidade, $preco, $codEmpresa) {
         try {
@@ -69,6 +78,14 @@ class TaxiService {
     public function viewTabelaTaxi() {
         try {
             $res = $this->taxiRepository->viewTabelaTaxi();
+            return $res;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+    public function viewTabelaTipo() {
+        try {
+            $res = $this->taxiRepository->viewTabelaTipo();
             return $res;
         } catch (Exception $e) {
             throw $e;

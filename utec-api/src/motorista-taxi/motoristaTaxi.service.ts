@@ -46,6 +46,30 @@ export class MotoristaTaxiService {
     return motoristaTaxiR;
   }
 
+  async getMotoristasTaxiComFilaEspera() {
+    const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
+      where: {
+        taxi: {
+          filaEspera: '1'
+        }
+      }
+    });
+
+    return motoristaTaxiR;
+  }
+  async getMotoristasTaxiComDisponibilidadeAtiva() {
+    const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
+      where: {
+        taxi: {
+          disponibilidade: 'activada'
+        }
+      }
+    });
+
+    return motoristaTaxiR;
+  }
+
+
   async getAll() {
     const motoristaTaxiR = await this.prisma.motoristataxi.findMany();
 

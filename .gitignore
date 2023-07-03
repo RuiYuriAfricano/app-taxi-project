@@ -1,1 +1,8 @@
 /nbproject/private/
+
+# Ignorar diretório "node_modules" na pasta "mobile"
+mobile/node_modules/
+
+# Ignorar diretório "node_modules" na pasta "utec-api"
+utec-api/node_modules/
+

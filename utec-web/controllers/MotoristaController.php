@@ -26,8 +26,8 @@ class MotoristaController {
 
         $filterOp = filter_input(INPUT_GET, 'op');
         $op = isset($filterOp) ? $filterOp : NULL;
-         $filterId = filter_input(INPUT_GET, 'email');
-        $email = isset($filterId) ? $filterId : NULL;
+         $filterEmail= filter_input(INPUT_GET, 'email');
+        $email = isset($filterEmail) ? $filterEmail : NULL;
         try {
             if ( $op == 'listar') {
                 $this->listarTaxi();
@@ -40,11 +40,10 @@ class MotoristaController {
             } else if ($op == 'eliminar') {
                 $this->eliminarMotorista();
             } else {
-                $this->showError("Page not found", "Page for operation " . $op . " was not found!");
+               $this->redirect('../view/motoristas.php');
             }
         } catch (Exception $e) {
-            // some unknown Exception got through here, use application error page to display it
-            $this->showError("Application error", $e->getMessage());
+            $this->redirect('../view/motoristas.php');
         }
     }
     
@@ -81,7 +80,7 @@ class MotoristaController {
     
     public function editarMotorista($email)
     {
-        $email= '';
+     
         $morada='';
         $datanasc='';
         $destreza='';

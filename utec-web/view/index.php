@@ -60,6 +60,19 @@
                 <span class="hide-menu">Táxis</span>
               </a>
             </li>
+              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./viaturas.php" aria-expanded="false">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 12v.01"></path>
+                                        <path d="M3 21h18"></path>
+                                        <path d="M6 21v-16a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v16"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="hide-menu">Viaturas</span>
+                                </a>
+                            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./motoristas.php" aria-expanded="false">
                 <span>
@@ -144,13 +157,14 @@
                 <a class="nav-link active" href="index.php">Clientes</a>
                 <a class="nav-link" href="taxistas.php">Taxistas</a>
                 <a class="nav-link" href="viagens.php">Viagens</a>
+                <a class="nav-link" href="faturamento.php">Facturamento</a>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-consulta1" role="tabpanel" aria-labelledby="nav-consulta1-tab" tabindex="0">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">CLIENTES QUE MAIS GASTAM (10)</h5>
+                    <h5 class="card-title fw-semibold mb-4">CLIENTES QUE MAIS GASTAM (5)</h5>
                     <div class="d-flex align-items-stretch">
                       <div class="card w-100">
                         <div class="card-body p-4">
@@ -160,35 +174,22 @@
                               <thead class="text-dark fs-4">
                                 <tr>
                                   <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nome</h6>
+                                    <h6 class="fw-semibold mb-0">Cliente</h6>
                                   </th>
                                   <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Apelidos</h6>
+                                    <h6 class="fw-semibold mb-0">Total dos Gastos</h6>
                                   </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nascimento</h6>
-                                  </th>
-                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Area</h6>
-                                  </th>
+                             
                                 </tr>
                               </thead>
                               <tbody>
 
-                                        <tr>
-                                          <td class="border-bottom-0">
-                                            <p class="fw-semibold mb-0">' . $item['nome'] . '</p>
-                                          </td>
-                                          <td class="border-bottom-0">
-                                            <p class="fw-semibold mb-1">' . $item['apelidos'] . ' AOA</p> 
-                                          </td>
-                                          <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">' . $item['data_nasc'] . '</p>
-                                          </td>
-                                          <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">' . $item['area'] . '</p>
-                                          </td> 
-                                        </tr>
+                                        <?php
+                                  require_once '../repository/views.php';
+
+                                  $repositorio = new views();
+                                  $r = $repositorio->clientesGastam();
+                                  ?>
                                   
                               </tbody>
                             </table>

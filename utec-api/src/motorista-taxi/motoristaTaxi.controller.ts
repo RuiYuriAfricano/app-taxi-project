@@ -36,6 +36,14 @@ export class MotoristaTaxiController {
   }
 
   @Get()
+  getMotoristasTaxiComDisponibilidadeAtiva() {
+    return this.motoristaTaxiService.getMotoristasTaxiComDisponibilidadeAtiva();
+  }
+  @Get()
+  getMotoristasTaxiComFilaEsper() {
+    return this.motoristaTaxiService.getMotoristasTaxiComFilaEspera();
+  }
+  @Get()
   getAll() {
     return this.motoristaTaxiService.getAll();
   }

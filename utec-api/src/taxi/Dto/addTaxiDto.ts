@@ -2,7 +2,7 @@ export class AddTaxiDto {
     codTaxi: number;
     x: string;
     y: string;
-    tipoDeViatura: string;
+    id_TDV: number;
     vmPorKM: number;
     precoBasePorKM: number;;
     disponibilidade: string;

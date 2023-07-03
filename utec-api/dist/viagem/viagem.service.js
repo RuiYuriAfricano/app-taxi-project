@@ -23,32 +23,34 @@ let ViagemService = exports.ViagemService = class ViagemService {
         this.prisma = prisma;
     }
     async add(data) {
-        const prisma = new prisma_service_1.PrismaService();
-        const mTaxiService = new motoristaTaxi_service_1.MotoristaTaxiService(prisma);
-        const mtaxiController = new motoristaTaxi_controller_1.MotoristaTaxiController(mTaxiService);
-        const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
-        let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
-        const motoristaService = new motorista_service_1.MotoristaService(prisma);
-        const motoristaController = new motorista_controller_1.MotoristaController(motoristaService);
-        const motorista = await motoristaController.getOne(mTaxi.id_motorista);
-        let precoReal = estimacao['preco'];
-        const destreza = motorista.destreza;
-        const fiabilidade = Math.floor(Math.random() * 5) + 1;
-        const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
-        const calc = Number(tempoReal) - Number(estimacao['tempo']);
-        const diferencaDeTempo = calc > 0 ? calc : calc * -1;
-        const taxiService = new taxi_service_1.TaxiService(prisma);
-        const taxiController = new taxi_controller_1.TaxiController(taxiService);
-        const taxi = await taxiController.getOne(mTaxi.id_taxi);
-        if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
-            const distancia = taxi.vmPorKM * diferencaDeTempo;
-            precoReal = taxi.precoBasePorKM * distancia;
+        if (data.estadoViagem === "instantanea") {
+            const prisma = new prisma_service_1.PrismaService();
+            const mTaxiService = new motoristaTaxi_service_1.MotoristaTaxiService(prisma);
+            const mtaxiController = new motoristaTaxi_controller_1.MotoristaTaxiController(mTaxiService);
+            const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
+            let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
+            const motoristaService = new motorista_service_1.MotoristaService(prisma);
+            const motoristaController = new motorista_controller_1.MotoristaController(motoristaService);
+            const motorista = await motoristaController.getOne(mTaxi.id_motorista);
+            let precoReal = estimacao['preco'];
+            const destreza = motorista.destreza;
+            const fiabilidade = Math.floor(Math.random() * 5) + 1;
+            const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
+            const calc = Number(tempoReal) - Number(estimacao['tempo']);
+            const diferencaDeTempo = calc > 0 ? calc : calc * -1;
+            const taxiService = new taxi_service_1.TaxiService(prisma);
+            const taxiController = new taxi_controller_1.TaxiController(taxiService);
+            const taxi = await taxiController.getOne(mTaxi.id_taxi);
+            if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
+                const distancia = taxi.vmPorKM * diferencaDeTempo;
+                precoReal = taxi.precoBasePorKM * distancia;
+            }
+            data.tempoEstimado = estimacao['tempo'];
+            data.tempoReal = tempoReal.toString();
+            data.custoEstimado = estimacao['tempo'];
+            data.custoFinal = precoReal;
+            data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
         }
-        data.tempoEstimado = estimacao['tempo'];
-        data.tempoReal = tempoReal.toString();
-        data.custoEstimado = estimacao['tempo'];
-        data.custoFinal = precoReal;
-        data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
         const newViagem = await this.prisma.viagem.create({
             data,
         });
@@ -56,6 +58,34 @@ let ViagemService = exports.ViagemService = class ViagemService {
     }
     async update(data) {
         data.codViagem = Number(data?.codViagem);
+        if (data.custoFinal.toString().trim().length === 0) {
+            const prisma = new prisma_service_1.PrismaService();
+            const mTaxiService = new motoristaTaxi_service_1.MotoristaTaxiService(prisma);
+            const mtaxiController = new motoristaTaxi_controller_1.MotoristaTaxiController(mTaxiService);
+            const mTaxi = await mtaxiController.getOne(data.fkMotoristaTaxi);
+            let estimacao = await this.estimar(mTaxi.id_taxi, data.xPartida, data.yPartida, data.xDestino, data.yDestino);
+            const motoristaService = new motorista_service_1.MotoristaService(prisma);
+            const motoristaController = new motorista_controller_1.MotoristaController(motoristaService);
+            const motorista = await motoristaController.getOne(mTaxi.id_motorista);
+            let precoReal = estimacao['preco'];
+            const destreza = motorista.destreza;
+            const fiabilidade = Math.floor(Math.random() * 5) + 1;
+            const tempoReal = Number(estimacao['tempo']) * Number(data.condicionantes) * fiabilidade / Number(destreza);
+            const calc = Number(tempoReal) - Number(estimacao['tempo']);
+            const diferencaDeTempo = calc > 0 ? calc : calc * -1;
+            const taxiService = new taxi_service_1.TaxiService(prisma);
+            const taxiController = new taxi_controller_1.TaxiController(taxiService);
+            const taxi = await taxiController.getOne(mTaxi.id_taxi);
+            if (diferencaDeTempo <= Number(estimacao['tempo']) * 0.25) {
+                const distancia = taxi.vmPorKM * diferencaDeTempo;
+                precoReal = taxi.precoBasePorKM * distancia;
+            }
+            data.tempoEstimado = estimacao['tempo'];
+            data.tempoReal = tempoReal.toString();
+            data.custoEstimado = estimacao['tempo'];
+            data.custoFinal = precoReal;
+            data.distanciaPercorrida = taxi.vmPorKM * estimacao['tempo'];
+        }
         const viagemR = await this.prisma.viagem.update({
             where: {
                 codViagem: data.codViagem,

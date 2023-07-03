@@ -11,8 +11,8 @@ export const useLoginState = () => {
   const [isLoadingLoginUser, setIsLoadingLoginUser] = useState(false);
 
   const [formLogin, setFormLogin] = useState({
-    email: "",
-    password: "",
+    email: "jose123@gmail.com",
+    password: "1234",
   });
 
   const [formRegister, setFormRegister] = useState({

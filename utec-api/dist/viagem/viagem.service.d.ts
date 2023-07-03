@@ -9,7 +9,7 @@ export declare class ViagemService {
     remove(codViagem: number): Promise<any>;
     estimar(codTaxi: number, xOrigem: string, yOrigem: string, xDestino: string, yDestino: string): Promise<-1 | {
         tempo: number;
-        precoEstimado: number;
+        preco: number;
         tempoDoTaxiAoCliente: number;
     }>;
     getOne(codViagem: number): Promise<any>;

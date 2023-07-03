@@ -76,8 +76,8 @@ model viagem {
   xDestino               String?
   yDestino               String?
   distanciaPercorrida    Float?
-  tempoEstimado          DateTime?
-  tempoReal              DateTime?
+  tempoEstimado          String?
+  tempoReal              String?
   data                   DateTime?
   factorFiabilidade      String?
   classificacaoMotorista String?

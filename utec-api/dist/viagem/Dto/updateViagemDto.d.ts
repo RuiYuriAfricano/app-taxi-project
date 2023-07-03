@@ -7,8 +7,8 @@ export declare class UpdateViagemDto {
     xDestino: string;
     yDestino: string;
     distanciaPercorrida: number;
-    tempoEstimado: Date;
-    tempoReal: Date;
+    tempoEstimado: string;
+    tempoReal: string;
     data: Date;
     factorFiabilidade: string;
     classificacaoMotorista: string;

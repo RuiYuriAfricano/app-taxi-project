@@ -13,7 +13,7 @@ import { UpdateMotoristaTaxiDto } from './dto/updateMotoristaTaxiDto';
 
 @Controller('motoristaTaxi')
 export class MotoristaTaxiController {
-  constructor(private motoristaTaxiService: MotoristaTaxiService) { }
+  constructor(private motoristaTaxiService: MotoristaTaxiService) {}
 
   @Post()
   add(@Body() data: AddMotoristaTaxiDto) {
@@ -35,14 +35,16 @@ export class MotoristaTaxiController {
     return this.motoristaTaxiService.getOne(codMotoristaTaxi);
   }
 
-  @Get()
+  @Get('disponivel')
   getMotoristasTaxiComDisponibilidadeAtiva() {
     return this.motoristaTaxiService.getMotoristasTaxiComDisponibilidadeAtiva();
   }
-  @Get()
+
+  @Get('filas')
   getMotoristasTaxiComFilaEsper() {
     return this.motoristaTaxiService.getMotoristasTaxiComFilaEspera();
   }
+
   @Get()
   getAll() {
     return this.motoristaTaxiService.getAll();

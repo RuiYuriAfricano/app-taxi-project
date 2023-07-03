@@ -50,9 +50,9 @@ let MotoristaTaxiService = exports.MotoristaTaxiService = class MotoristaTaxiSer
         const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
             where: {
                 taxi: {
-                    filaEspera: '1'
-                }
-            }
+                    filaEspera: '1',
+                },
+            },
         });
         return motoristaTaxiR;
     }
@@ -60,9 +60,9 @@ let MotoristaTaxiService = exports.MotoristaTaxiService = class MotoristaTaxiSer
         const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
             where: {
                 taxi: {
-                    disponibilidade: 'activada'
-                }
-            }
+                    disponibilidade: 'activada',
+                },
+            },
         });
         return motoristaTaxiR;
     }

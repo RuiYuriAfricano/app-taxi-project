@@ -5,14 +5,12 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class MotoristaTaxiService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async add(data: AddMotoristaTaxiDto) {
-    const newMotoristaTaxi = await this.prisma.motoristataxi.create(
-      {
-        data,
-      }
-    )
+    const newMotoristaTaxi = await this.prisma.motoristataxi.create({
+      data,
+    });
     return newMotoristaTaxi;
   }
 
@@ -50,9 +48,9 @@ export class MotoristaTaxiService {
     const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
       where: {
         taxi: {
-          filaEspera: '1'
-        }
-      }
+          filaEspera: '1',
+        },
+      },
     });
 
     return motoristaTaxiR;
@@ -61,19 +59,17 @@ export class MotoristaTaxiService {
     const motoristaTaxiR = await this.prisma.motoristataxi.findMany({
       where: {
         taxi: {
-          disponibilidade: 'activada'
-        }
-      }
+          disponibilidade: 'activada',
+        },
+      },
     });
 
     return motoristaTaxiR;
   }
-
 
   async getAll() {
     const motoristaTaxiR = await this.prisma.motoristataxi.findMany();
 
     return motoristaTaxiR;
   }
-
 }

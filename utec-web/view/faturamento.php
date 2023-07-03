@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Administrador-home</title>
+  <title>Administrador</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -76,7 +76,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="./motoristas.php" aria-expanded="false">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                     <path d="M12 12h3.5"></path>
@@ -153,10 +153,10 @@
         <div class="row">
           <div class="align-items-strech">
             <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-link active" href="index.php">Clientes</a>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link" href="index.php">Clientes</a>
                 <a class="nav-link" href="taxistas.php">Taxistas</a>
-                <a class="nav-link" href="viagens.php">Viagens</a>
+                <a class="nav-link active" href="viagens.php">Viagens</a>
                 <a class="nav-link" href="faturamento.php">Facturamento</a>
               </div>
             </nav>
@@ -164,7 +164,7 @@
               <div class="tab-pane fade show active" id="nav-consulta1" role="tabpanel" aria-labelledby="nav-consulta1-tab" tabindex="0">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">CLIENTES QUE MAIS GASTAM (5)</h5>
+                    <h5 class="card-title fw-semibold mb-4">Total facturado por viatura nos ultimos 7 dias</h5>
                     <div class="d-flex align-items-stretch">
                       <div class="card w-100">
                         <div class="card-body p-4">
@@ -174,12 +174,18 @@
                               <thead class="text-dark fs-4">
                                 <tr>
                                   <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Cliente</h6>
+                                    <h6 class="fw-semibold mb-0">N* do Taxi</h6>
                                   </th>
                                   <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Total dos Gastos</h6>
+                                    <h6 class="fw-semibold mb-0">Tipo de Taxi</h6>
                                   </th>
-                             
+                                  <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Motorista</h6>
+                                  </th>
+                                  <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Valor total</h6>
+                                  </th>
+                                  
                                 </tr>
                               </thead>
                               <tbody>
@@ -188,7 +194,7 @@
                                   require_once '../repository/views.php';
 
                                   $repositorio = new views();
-                                  $r = $repositorio->clientesGastam();
+                                  $r = $repositorio->taxiFactura();
                                   ?>
                                   
                               </tbody>

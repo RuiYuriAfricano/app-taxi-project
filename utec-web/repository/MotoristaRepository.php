@@ -57,7 +57,7 @@ class MotoristaRepository {
     public function editarMotorista($email, $morada, $datanasc, $destreza, $codEmpresa) {
 
         try {
-             $stmt = $this->db->prepare("Update motorista set destreza=:destreza, id_empresa=:id_empresa where email = : email");
+             $stmt = $this->db->prepare("Update motorista set destreza=:destreza, id_empresa=:id_empresa where email = :email");
               $stmt->bindparam(":email", $email);
             $stmt->bindparam(":destreza", $destreza);
             $stmt->bindparam(":id_empresa", $codEmpresa);
@@ -98,6 +98,17 @@ class MotoristaRepository {
             echo $e->getMessage();
             return false;
         }
+    }
+    public function getAdmin(){
+        $admins = Array();
+        $stmt = $this->db->prepare("SELECT * FROM administrador ");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        foreach ($result as $row) {
+            $admins[] = Array($row['email'], $row['password']);
+        }
+        return $admins;
     }
 
     public function selecionartodos() {

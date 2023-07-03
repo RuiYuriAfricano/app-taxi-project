@@ -1,1 +1,43 @@
 PHP e HTML e BOOTSTRAP
+
+
+Views usadas na base de dados
+
+CREATE VIEW motorista_lista AS 
+SELECT a.email, a.morada, a.datanasc, a.password, m.destreza, m.id_empresa 
+FROM actor a 
+JOIN motorista m ON a.email=m.email;
+
+CREATE VIEW ultimas_10_viagens AS 
+SELECT v.codViagem,mt.id_taxi, mt.id_motorista, v.id_cliente, v.data 
+FROM viagem v 
+JOIN motoristataxi mt ON mt.codMotoristaTaxi = v.id_motoristaTaxi 
+WHERE v.estadoViagem <> 'Marcada' 
+ORDER BY data DESC LIMIT 10;
+
+CREATE VIEW taxi_lista AS 
+SELECT t.codTaxi, t.x, t.y, t.id_TDV, t.vmPorKM, t.precoBasePorKM, t.disponiblidade, t.filaEspera, t.id_empresa, v.tipo 
+FROM taxi t 
+JOIN tipodeviatura v ON t.id_TDV = v.codTDV;
+
+CREATE VIEW clientes_mais_gastam AS 
+SELECT id_cliente ,SUM( custoFinal ) AS total_gasto 
+FROM viagem GROUP BY id_cliente 
+ORDER BY total_gasto DESC LIMIT 5;
+
+
+CREATE VIEW faturamento_ultimos_7_dias AS 
+SELECT mt.id_taxi, tv.tipo, mt.id_motorista, SUM( v.custoFinal) AS valor_total 
+FROM viagem v 
+JOIN motoristataxi mt ON v.id_motoristaTaxi = mt.codMotoristaTaxi 
+JOIN taxi t ON t.codTaxi = mt.id_taxi 
+JOIN tipodeviatura tv On tv.codTDV = t.id_TDV 
+WHERE v.data >= CURDATE() - INTERVAL 7 DAY AND v.data <= CURDATE() 
+GROUP BY v.id_motoristaTaxi, mt.codMotoristaTaxi, t.codTaxi, t.id_TDV;
+
+CREATE VIEW maiores_desvios AS 
+SELECT mt.id_motorista, SUM(v.custoFinal) AS total_pago, SUM(v.custoEstimado) AS total_previsto, (SUM(v.custoFinal) - SUM(v.custoEstimado)) AS diferenca 
+FROM viagem v 
+JOIN motoristataxi mt ON v.id_motoristaTaxi = mt.codMotoristaTaxi 
+GROUP BY mt.id_motorista 
+ORDER BY diferenca DESC LIMIT 5;

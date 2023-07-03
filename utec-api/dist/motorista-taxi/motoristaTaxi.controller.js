@@ -33,6 +33,12 @@ let MotoristaTaxiController = exports.MotoristaTaxiController = class MotoristaT
     getOne(codMotoristaTaxi) {
         return this.motoristaTaxiService.getOne(codMotoristaTaxi);
     }
+    getMotoristasTaxiComDisponibilidadeAtiva() {
+        return this.motoristaTaxiService.getMotoristasTaxiComDisponibilidadeAtiva();
+    }
+    getMotoristasTaxiComFilaEsper() {
+        return this.motoristaTaxiService.getMotoristasTaxiComFilaEspera();
+    }
     getAll() {
         return this.motoristaTaxiService.getAll();
     }
@@ -65,6 +71,18 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], MotoristaTaxiController.prototype, "getOne", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotoristaTaxiController.prototype, "getMotoristasTaxiComDisponibilidadeAtiva", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotoristaTaxiController.prototype, "getMotoristasTaxiComFilaEsper", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

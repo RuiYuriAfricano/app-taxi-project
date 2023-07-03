@@ -4,9 +4,39 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class MotoristaTaxiService {
     private prisma;
     constructor(prisma: PrismaService);
-    add(data: AddMotoristaTaxiDto): Promise<any>;
-    update(data: UpdateMotoristaTaxiDto): Promise<any>;
-    remove(codMotoristaTaxi: number): Promise<any>;
-    getOne(codMotoristaTaxi: number): Promise<any>;
-    getAll(): Promise<any>;
+    add(data: AddMotoristaTaxiDto): Promise<import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {}>;
+    update(data: UpdateMotoristaTaxiDto): Promise<import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {}>;
+    remove(codMotoristaTaxi: number): Promise<import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {}>;
+    getOne(codMotoristaTaxi: number): Promise<import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {}>;
+    getMotoristasTaxiComFilaEspera(): Promise<(import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {})[]>;
+    getMotoristasTaxiComDisponibilidadeAtiva(): Promise<(import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {})[]>;
+    getAll(): Promise<(import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {})[]>;
 }

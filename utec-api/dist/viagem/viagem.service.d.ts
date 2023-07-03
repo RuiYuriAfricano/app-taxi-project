@@ -10,6 +10,7 @@ export declare class ViagemService {
     estimar(codTaxi: number, xOrigem: string, yOrigem: string, xDestino: string, yDestino: string): Promise<-1 | {
         tempo: number;
         precoEstimado: number;
+        tempoDoTaxiAoCliente: number;
     }>;
     getOne(codViagem: number): Promise<any>;
     getAll(): Promise<any>;

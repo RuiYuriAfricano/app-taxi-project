@@ -8,6 +8,7 @@ export declare class ViagemController {
     estimar(codTaxi: number, xOrigem: string, yOrigem: string, xDestino: string, yDestino: string): Promise<-1 | {
         tempo: number;
         precoEstimado: number;
+        tempoDoTaxiAoCliente: number;
     }>;
     update(data: UpdateViagemDto): Promise<any>;
     remove(codViagem: number): Promise<any>;

@@ -53,9 +53,14 @@ let ViagemService = exports.ViagemService = class ViagemService {
         }
         let tempoEstimado = dist / taxi.vmPorKM;
         let precoEstimado = dist * taxi.precoBasePorKM;
+        let distTaxiCliente = Math.sqrt(Math.pow((Number(xOrigem) - Number(taxi.x)), 2)
+            +
+                Math.pow((Number(yOrigem) - Number(taxi.y)), 2));
+        let tempoTaxiCliente = distTaxiCliente / taxi.vmPorKM;
         const estimacao = {
             tempo: tempoEstimado,
-            precoEstimado: precoEstimado
+            precoEstimado: precoEstimado,
+            tempoDoTaxiAoCliente: tempoTaxiCliente
         };
         return estimacao;
     }

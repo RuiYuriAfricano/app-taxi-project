@@ -4,10 +4,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class ActorService {
     private prisma;
     constructor(prisma: PrismaService);
-    add(data: AddActorDto): unknown;
-    update(data: UpdateActorDto): unknown;
-    remove(email: string): unknown;
-    getOne(email: string): unknown;
-    login(email: string, password: string): unknown;
-    getAll(): unknown;
+    add(data: AddActorDto): Promise<any>;
+    update(data: UpdateActorDto): Promise<any>;
+    remove(email: string): Promise<any>;
+    getOne(email: string): Promise<any>;
+    login(email: string, password: string): Promise<any>;
+    getAll(): Promise<any>;
 }

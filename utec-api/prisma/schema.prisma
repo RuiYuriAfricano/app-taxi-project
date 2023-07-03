@@ -71,8 +71,10 @@ model viagem {
 
   custoFinal             Float?
   custoEstimado          Float?
-  pontoPartida           String?
-  pontoDestino           String?
+  xPartida               String?
+  yPartida               String?
+  xDestino               String?
+  yDestino               String?
   distanciaPercorrida    Float?
   tempoEstimado          DateTime?
   tempoReal              DateTime?

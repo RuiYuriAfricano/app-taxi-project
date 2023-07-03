@@ -4,9 +4,9 @@ import { UpdateMotoristaTaxiDto } from './dto/updateMotoristaTaxiDto';
 export declare class MotoristaTaxiController {
     private motoristaTaxiService;
     constructor(motoristaTaxiService: MotoristaTaxiService);
-    add(data: AddMotoristaTaxiDto): unknown;
-    update(data: UpdateMotoristaTaxiDto): unknown;
-    remove(codMotoristaTaxi: number): unknown;
-    getOne(codMotoristaTaxi: number): unknown;
-    getAll(): unknown;
+    add(data: AddMotoristaTaxiDto): Promise<any>;
+    update(data: UpdateMotoristaTaxiDto): Promise<any>;
+    remove(codMotoristaTaxi: number): Promise<any>;
+    getOne(codMotoristaTaxi: number): Promise<any>;
+    getAll(): Promise<any>;
 }

@@ -4,9 +4,9 @@ import { UpdateClienteDto } from './dto/updateClienteDto';
 export declare class ClienteController {
     private clienteService;
     constructor(clienteService: ClienteService);
-    add(data: AddClienteDto): unknown;
-    update(data: UpdateClienteDto): unknown;
-    remove(clienteEmail: string): unknown;
-    getOne(clienteEmail: string): unknown;
-    getAll(): unknown;
+    add(data: AddClienteDto): Promise<any>;
+    update(data: UpdateClienteDto): Promise<any>;
+    remove(clienteEmail: string): Promise<any>;
+    getOne(clienteEmail: string): Promise<any>;
+    getAll(): Promise<any>;
 }

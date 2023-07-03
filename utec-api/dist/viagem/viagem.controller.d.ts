@@ -4,9 +4,13 @@ import { UpdateViagemDto } from './Dto/updateViagemDto';
 export declare class ViagemController {
     private viagemService;
     constructor(viagemService: ViagemService);
-    add(data: AddViagemDto): unknown;
-    update(data: UpdateViagemDto): unknown;
-    remove(codViagem: number): unknown;
-    getOne(codViagem: number): unknown;
-    getAll(): unknown;
+    add(data: AddViagemDto): Promise<any>;
+    estimar(codTaxi: number, xOrigem: string, yOrigem: string, xDestino: string, yDestino: string): Promise<-1 | {
+        tempo: number;
+        precoEstimado: number;
+    }>;
+    update(data: UpdateViagemDto): Promise<any>;
+    remove(codViagem: number): Promise<any>;
+    getOne(codViagem: number): Promise<any>;
+    getAll(): Promise<any>;
 }

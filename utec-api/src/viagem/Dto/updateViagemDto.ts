@@ -2,8 +2,10 @@ export class UpdateViagemDto {
     codViagem: number;
     custoFinal: number;
     custoEstimado: number;
-    pontoPartida: string;
-    pontoDestino: string;
+    xPartida: string;
+    yPartida: string;
+    xDestino: string;
+    yDestino: string;
     distanciaPercorrida: number;
     tempoEstimado: Date;
     tempoReal: Date;

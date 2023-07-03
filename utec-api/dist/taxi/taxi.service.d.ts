@@ -4,9 +4,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class TaxiService {
     private prisma;
     constructor(prisma: PrismaService);
-    add(data: AddTaxiDto): unknown;
-    update(data: UpdateTaxiDto): unknown;
-    remove(codTaxi: number): unknown;
-    getOne(codTaxi: number): unknown;
-    getAll(): unknown;
+    add(data: AddTaxiDto): Promise<any>;
+    update(data: UpdateTaxiDto): Promise<any>;
+    remove(codTaxi: number): Promise<any>;
+    getOne(codTaxi: number): Promise<any>;
+    getAll(): Promise<any>;
 }

@@ -4,9 +4,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class MotoristaService {
     private prisma;
     constructor(prisma: PrismaService);
-    add(data: AddMotoristaDto): unknown;
-    update(data: UpdateMotoristaDto): unknown;
-    remove(email: string): unknown;
-    getOne(email: string): unknown;
-    getAll(): unknown;
+    add(data: AddMotoristaDto): Promise<any>;
+    update(data: UpdateMotoristaDto): Promise<any>;
+    remove(email: string): Promise<any>;
+    getOne(email: string): Promise<any>;
+    getAll(): Promise<any>;
 }

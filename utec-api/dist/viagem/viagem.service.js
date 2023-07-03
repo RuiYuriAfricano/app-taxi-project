@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ViagemService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const taxi_controller_1 = require("../taxi/taxi.controller");
+const taxi_service_1 = require("../taxi/taxi.service");
 let ViagemService = exports.ViagemService = class ViagemService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -37,6 +39,25 @@ let ViagemService = exports.ViagemService = class ViagemService {
             where: { codViagem },
         });
         return response;
+    }
+    async estimar(codTaxi, xOrigem, yOrigem, xDestino, yDestino) {
+        const distX = Math.pow(Number(xDestino) - Number(xOrigem), 2);
+        const distY = Math.pow(Number(yDestino) - Number(yOrigem), 2);
+        const dist = Math.sqrt(distX + distY);
+        const prisma = new prisma_service_1.PrismaService();
+        const taxiService = new taxi_service_1.TaxiService(prisma);
+        const taxiController = new taxi_controller_1.TaxiController(taxiService);
+        const taxi = await taxiController.getOne(codTaxi);
+        if (!taxi) {
+            return -1;
+        }
+        let tempoEstimado = dist / taxi.vmPorKM;
+        let precoEstimado = dist * taxi.precoBasePorKM;
+        const estimacao = {
+            tempo: tempoEstimado,
+            precoEstimado: precoEstimado
+        };
+        return estimacao;
     }
     async getOne(codViagem) {
         const viagemR = await this.prisma.viagem.findUnique({

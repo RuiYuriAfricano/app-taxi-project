@@ -4,13 +4,13 @@ import { UpdateActorDto } from './dto/updateActorDto';
 export declare class ActorController {
     private actorService;
     constructor(actorService: ActorService);
-    add(data: AddActorDto): unknown;
-    update(data: UpdateActorDto): unknown;
-    remove(email: string): unknown;
-    getOne(email: string): unknown;
+    add(data: AddActorDto): Promise<any>;
+    update(data: UpdateActorDto): Promise<any>;
+    remove(email: string): Promise<any>;
+    getOne(email: string): Promise<any>;
     login(loginData: {
         email: string;
         password: string;
-    }): unknown;
-    getAll(): unknown;
+    }): Promise<any>;
+    getAll(): Promise<any>;
 }

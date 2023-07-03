@@ -4,9 +4,9 @@ import { UpdateMotoristaDto } from './dto/updateMotoristaDto';
 export declare class MotoristaController {
     private motoristaService;
     constructor(motoristaService: MotoristaService);
-    add(data: AddMotoristaDto): unknown;
-    update(data: UpdateMotoristaDto): unknown;
-    remove(email: string): unknown;
-    getOne(email: string): unknown;
-    getAll(): unknown;
+    add(data: AddMotoristaDto): Promise<any>;
+    update(data: UpdateMotoristaDto): Promise<any>;
+    remove(email: string): Promise<any>;
+    getOne(email: string): Promise<any>;
+    getAll(): Promise<any>;
 }

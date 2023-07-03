@@ -24,6 +24,9 @@ let ViagemController = exports.ViagemController = class ViagemController {
     add(data) {
         return this.viagemService.add(data);
     }
+    estimar(codTaxi, xOrigem, yOrigem, xDestino, yDestino) {
+        return this.viagemService.estimar(codTaxi, xOrigem, yOrigem, xDestino, yDestino);
+    }
     update(data) {
         return this.viagemService.update(data);
     }
@@ -44,6 +47,13 @@ __decorate([
     __metadata("design:paramtypes", [addViagemDto_1.AddViagemDto]),
     __metadata("design:returntype", void 0)
 ], ViagemController.prototype, "add", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String, String, String, String]),
+    __metadata("design:returntype", void 0)
+], ViagemController.prototype, "estimar", null);
 __decorate([
     (0, common_1.Put)(),
     __param(0, (0, common_1.Body)()),

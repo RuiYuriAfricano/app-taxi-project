@@ -8,7 +8,7 @@ export declare class TaxiController {
         codTaxi: number;
         x: string;
         y: string;
-        tipoDeViatura: string;
+        id_TDV: number;
         vmPorKM: number;
         precoBasePorKM: number;
         disponibilidade: string;
@@ -19,7 +19,7 @@ export declare class TaxiController {
         codTaxi: number;
         x: string;
         y: string;
-        tipoDeViatura: string;
+        id_TDV: number;
         vmPorKM: number;
         precoBasePorKM: number;
         disponibilidade: string;
@@ -30,7 +30,7 @@ export declare class TaxiController {
         codTaxi: number;
         x: string;
         y: string;
-        tipoDeViatura: string;
+        id_TDV: number;
         vmPorKM: number;
         precoBasePorKM: number;
         disponibilidade: string;
@@ -41,7 +41,7 @@ export declare class TaxiController {
         codTaxi: number;
         x: string;
         y: string;
-        tipoDeViatura: string;
+        id_TDV: number;
         vmPorKM: number;
         precoBasePorKM: number;
         disponibilidade: string;
@@ -52,7 +52,7 @@ export declare class TaxiController {
         codTaxi: number;
         x: string;
         y: string;
-        tipoDeViatura: string;
+        id_TDV: number;
         vmPorKM: number;
         precoBasePorKM: number;
         disponibilidade: string;

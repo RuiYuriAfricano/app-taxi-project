@@ -13,7 +13,7 @@ import { UpdateMotoristaDto } from './dto/updateMotoristaDto';
 
 @Controller('motorista')
 export class MotoristaController {
-  constructor(private motoristaService: MotoristaService) { }
+  constructor(private motoristaService: MotoristaService) {}
 
   @Post()
   add(@Body() data: AddMotoristaDto) {

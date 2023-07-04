@@ -59,7 +59,7 @@ __decorate([
 ], MotoristaTaxiController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':codMotoristaTaxi'),
-    __param(0, (0, common_1.Param)('email')),
+    __param(0, (0, common_1.Param)('codMotoristaTaxi')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)

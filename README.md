@@ -25,7 +25,7 @@ Projeto de Serviços de Transporte da UTEC
 
 # O Projeto
 
-<img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/img-project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI">
+<img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/img-project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI" width="700px" height="700px">
 
 # Relatório
 <object data="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/relatorio-labFinal.pdf" type="application/pdf" width="700px" height="700px">

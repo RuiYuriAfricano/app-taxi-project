@@ -27,7 +27,7 @@ Projeto de Serviços de Transporte da UTEC
 - Netbeans
 - XAMPP e MySql Workbench
 - Insomnia, Expo e Android Studio
-- 
+  
 # O Projeto
 
 <img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/blob/main/docs/project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI">

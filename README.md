@@ -22,10 +22,19 @@ Projeto de Serviços de Transporte da UTEC
 - PHP
 - Bootstrap
 - React Hooks
+- 
+# Others 
+- Git
+- VScode 
 
 # O Projeto
+2 weeks ago
 
-<img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/img-project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI" width="700px" height="700px">
+feat: ajustment readme
+<img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/blob/main/docs/project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI">
+2 weeks ago
+
+Create README.md
 
 # Relatório
 <object data="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/relatorio-labFinal.pdf" type="application/pdf" width="700px" height="700px">

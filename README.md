@@ -15,26 +15,22 @@ Projeto de Serviços de Transporte da UTEC
 # Stack
 
 - React.Native
-- Nest Js
+- Nest Js e Prisma
 - Typescript
-- Prisma (ORM)
-- MySQL
-- PHP
-- Bootstrap
+- MySQL e PHP
+- Bootstrap, HTML e CSS
 - React Hooks
-- HTML e CSS
+
 # Others 
 - Git
 - VScode 
-
+- Netbeans
+- XAMPP e MySql Workbench
+- Insomnia, Expo e Android Studio
+- 
 # O Projeto
-2 weeks ago
 
-feat: ajustment readme
 <img alt="project.png" src="https://github.com/RuiYuriAfricano/app-taxi-project/blob/main/docs/project.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 kzRgrI">
-2 weeks ago
-
-Create README.md
 
 # Relatório
 <object data="https://github.com/RuiYuriAfricano/app-taxi-project/tree/main/docs/relatorio-labFinal.pdf" type="application/pdf" width="700px" height="700px">

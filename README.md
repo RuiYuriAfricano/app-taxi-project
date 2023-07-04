@@ -1,4 +1,4 @@
-# app-taxi
+# App-taxi
 
 Projeto de Serviços de Transporte da UTEC
 

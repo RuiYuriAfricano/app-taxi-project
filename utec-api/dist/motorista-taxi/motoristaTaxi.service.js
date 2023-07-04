@@ -41,7 +41,7 @@ let MotoristaTaxiService = exports.MotoristaTaxiService = class MotoristaTaxiSer
     async getOne(codMotoristaTaxi) {
         const motoristaTaxiR = await this.prisma.motoristataxi.findUnique({
             where: {
-                codMotoristaTaxi,
+                codMotoristaTaxi: codMotoristaTaxi,
             },
         });
         return motoristaTaxiR;

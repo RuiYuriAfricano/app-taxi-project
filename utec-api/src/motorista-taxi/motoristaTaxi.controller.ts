@@ -30,18 +30,19 @@ export class MotoristaTaxiController {
     return this.motoristaTaxiService.remove(codMotoristaTaxi);
   }
 
-  @Get(':codMotoristaTaxi')
-  getOne(@Param('codMotoristaTaxi') codMotoristaTaxi: number) {
-    return this.motoristaTaxiService.getOne(codMotoristaTaxi);
-  }
 
-  @Get()
+  @Get('disponivel')
   getMotoristasTaxiComDisponibilidadeAtiva() {
     return this.motoristaTaxiService.getMotoristasTaxiComDisponibilidadeAtiva();
   }
-  @Get()
-  getMotoristasTaxiComFilaEsper() {
+  @Get('filas')
+  getMotoristasTaxiComFilaEspera() {
     return this.motoristaTaxiService.getMotoristasTaxiComFilaEspera();
+  }
+
+  @Get(':codMotoristaTaxi')
+  getOne(@Param('codMotoristaTaxi') codMotoristaTaxi: number) {
+    return this.motoristaTaxiService.getOne(codMotoristaTaxi);
   }
   @Get()
   getAll() {

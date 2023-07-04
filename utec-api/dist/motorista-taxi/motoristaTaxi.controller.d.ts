@@ -19,21 +19,21 @@ export declare class MotoristaTaxiController {
         id_taxi: number;
         id_motorista: string;
     }, unknown> & {}>;
-    getOne(codMotoristaTaxi: number): Promise<import("@prisma/client/runtime").GetResult<{
-        codMotoristaTaxi: number;
-        id_taxi: number;
-        id_motorista: string;
-    }, unknown> & {}>;
     getMotoristasTaxiComDisponibilidadeAtiva(): Promise<(import("@prisma/client/runtime").GetResult<{
         codMotoristaTaxi: number;
         id_taxi: number;
         id_motorista: string;
     }, unknown> & {})[]>;
-    getMotoristasTaxiComFilaEsper(): Promise<(import("@prisma/client/runtime").GetResult<{
+    getMotoristasTaxiComFilaEspera(): Promise<(import("@prisma/client/runtime").GetResult<{
         codMotoristaTaxi: number;
         id_taxi: number;
         id_motorista: string;
     }, unknown> & {})[]>;
+    getOne(codMotoristaTaxi: number): Promise<import("@prisma/client/runtime").GetResult<{
+        codMotoristaTaxi: number;
+        id_taxi: number;
+        id_motorista: string;
+    }, unknown> & {}>;
     getAll(): Promise<(import("@prisma/client/runtime").GetResult<{
         codMotoristaTaxi: number;
         id_taxi: number;

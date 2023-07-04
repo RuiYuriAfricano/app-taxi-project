@@ -30,14 +30,14 @@ let MotoristaTaxiController = exports.MotoristaTaxiController = class MotoristaT
     remove(codMotoristaTaxi) {
         return this.motoristaTaxiService.remove(codMotoristaTaxi);
     }
-    getOne(codMotoristaTaxi) {
-        return this.motoristaTaxiService.getOne(codMotoristaTaxi);
-    }
     getMotoristasTaxiComDisponibilidadeAtiva() {
         return this.motoristaTaxiService.getMotoristasTaxiComDisponibilidadeAtiva();
     }
-    getMotoristasTaxiComFilaEsper() {
+    getMotoristasTaxiComFilaEspera() {
         return this.motoristaTaxiService.getMotoristasTaxiComFilaEspera();
+    }
+    getOne(codMotoristaTaxi) {
+        return this.motoristaTaxiService.getOne(codMotoristaTaxi);
     }
     getAll() {
         return this.motoristaTaxiService.getAll();
@@ -65,24 +65,24 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotoristaTaxiController.prototype, "remove", null);
 __decorate([
+    (0, common_1.Get)('disponivel'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotoristaTaxiController.prototype, "getMotoristasTaxiComDisponibilidadeAtiva", null);
+__decorate([
+    (0, common_1.Get)('filas'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotoristaTaxiController.prototype, "getMotoristasTaxiComFilaEspera", null);
+__decorate([
     (0, common_1.Get)(':codMotoristaTaxi'),
     __param(0, (0, common_1.Param)('codMotoristaTaxi')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], MotoristaTaxiController.prototype, "getOne", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], MotoristaTaxiController.prototype, "getMotoristasTaxiComDisponibilidadeAtiva", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], MotoristaTaxiController.prototype, "getMotoristasTaxiComFilaEsper", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

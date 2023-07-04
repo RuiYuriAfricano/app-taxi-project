@@ -30,7 +30,7 @@ class views {
                     <td><?php echo($row['codViagem']); ?></td>
                     <td><?php echo($row['id_taxi']); ?></td>
                     <td><?php echo($row['id_motorista']); ?></td>
-                    <td><?php echo($row['id_cliente']); ?></td>
+                    <td><?php echo($row['fkclienteEmail']); ?></td>
                     <td><?php echo($row['data']); ?></td><!-- comment -->
                 </tr>
                 <?php
@@ -51,7 +51,7 @@ class views {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <tr>
-                    <td><?php echo($row['id_cliente']); ?></td>
+                    <td><?php echo($row['fkclienteEmail']); ?></td>
                     <td><?php echo($row['total_gasto']); ?></td>
                 </tr>
                 <?php

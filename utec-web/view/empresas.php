@@ -9,14 +9,14 @@
         <link rel="stylesheet" href="../assets/css/styles.min.css" />
     </head>
 
-    <body>
+    <body >
         <!--  Body Wrapper -->
-        <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="page-wrapper " id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
             <!-- Sidebar Start -->
             <aside class="left-sidebar">
                 <!-- Sidebar scroll-->
                 <div>
-                    <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <div class="brand-logo d-flex align-items-center justify-content-between ">
                         <a href="./index.php" class="text-nowrap logo-img">
                             <h2><strong>UTEC Soft.</strong></h2>
                         </a>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <nav class="sidebar-nav scroll-sidebar " data-simplebar="">
                         <ul id="sidebarnav">
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -84,6 +84,22 @@
                                         </svg>
                                     </span>
                                     <span class="hide-menu">Motoristas</span>
+                                </a>
+                            </li>
+                             <li class="sidebar-item">
+                                <a class="sidebar-link" href="./motorista-taxi.php" aria-expanded="false">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
+                                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
+                                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="hide-menu">Taxis e seus Motoristas</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
@@ -189,10 +205,10 @@
                                                             <table class="table text-nowrap mb-0 align-middle">
                                                                 <thead class="text-dark fs-4">
                                                                     <tr>
-                                                                        <th class="border-bottom-0">
-                                                                            <h6 class="fw-semibold mb-0">Id</h6>
+                                                                        <th class="border-bottom-0 text-center">
+                                                                            <h6 class="fw-semibold mb-0">N* da Empresa</h6>
                                                                         </th>
-                                                                        <th class="border-bottom-0">
+                                                                        <th class="border-bottom-0 text-center">
                                                                             <h6 class="fw-semibold mb-0">Nome</h6>
                                                                         </th>
 

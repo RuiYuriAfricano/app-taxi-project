@@ -1,6 +1,5 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
     <head>
         <meta charset="utf-8">
@@ -10,14 +9,14 @@
         <link rel="stylesheet" href="../assets/css/styles.min.css" />
     </head>
 
-    <body>
+    <body >
         <!--  Body Wrapper -->
-        <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="page-wrapper " id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
             <!-- Sidebar Start -->
             <aside class="left-sidebar">
                 <!-- Sidebar scroll-->
                 <div>
-                    <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <div class="brand-logo d-flex align-items-center justify-content-between ">
                         <a href="./index.php" class="text-nowrap logo-img">
                             <h2><strong>UTEC Soft.</strong></h2>
                         </a>
@@ -26,7 +25,7 @@
                         </div>
                     </div>
                     <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <nav class="sidebar-nav scroll-sidebar " data-simplebar="">
                         <ul id="sidebarnav">
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -61,7 +60,7 @@
                                     <span class="hide-menu">Táxis</span>
                                 </a>
                             </li>
-                              <li class="sidebar-item">
+                            <li class="sidebar-item">
                                 <a class="sidebar-link" href="./viaturas.php" aria-expanded="false">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -87,7 +86,7 @@
                                     <span class="hide-menu">Motoristas</span>
                                 </a>
                             </li>
-                            <li class="sidebar-item">
+                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="./motorista-taxi.php" aria-expanded="false">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -168,23 +167,49 @@
                 <div class="container-fluid">
                     <!--  Row 1 -->
                     <div class="row">
-                          
-                               <div class="card">
+                        <div class="align-items-strech">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="true">Listagem</button>
+                                    <button class="nav-link " id="nav-new-tab" data-bs-toggle="tab" data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new" aria-selected="false">Novo</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab" tabindex="0">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title fw-semibold mb-4">Editar</h5>
+                                            <h5 class="card-title fw-semibold mb-4">Nova Associação</h5>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <?php
-                                                    $filterId = filter_input(INPUT_GET, 'id');
-                                                    $id = isset($filterId) ? $filterId : NULL;
-                                                    $filterNome = filter_input(INPUT_GET, 'nome');
-                                                    $nome = isset($filterNome) ? $filterNome : NULL;
-                                                    ?>
-                                                    <form action="../controllers/action.php?op=editar&id=<?php echo $id; ?>" method="post">
+                                                    <form action="../controllers/actionMT.php" method="post">
                                                         <input type="hidden" name="cadastrar" value="true">
                                                         <div class="mb-3">
-                                                            <label for="nome" class="form-label">Nome:</label>
-                                                            <input type="text" name="nomeEmpresa" class="form-control" id="nomeEmpresa" aria-describedby="nomeHelp" value="<?php echo $nome;?>">
+                                                            <label for="area" class="form-label">Motorista</label>
+                                                            <select name="motorista" class="form-control" id="motorista">
+                                                                  <?php
+                                                                    
+                                                                    include_once '../repository/MTRepository.php';
+
+                                                                    $service = new MTRepository();
+                                                                    $service->selectMotorista();
+                                                                    
+                                                                    ?>
+
+                                                            </select>
+                                                        </div>
+                                                         <div class="mb-3">
+                                                            <label for="area" class="form-label">Taxi</label>
+                                                            <select name="taxi" class="form-control" id="taxi">
+                                                                  <?php
+                                                                    
+                                                                    include_once '../repository/MTRepository.php';
+
+                                                                    $service = new MTRepository();
+                                                                    $service->selectTaxi();
+                                                                    
+                                                                    ?>
+
+                                                            </select>
                                                         </div>
                                                         <button type="submit" value='form-submit' name='form-submit' class="mt-5 btn btn-primary">Confirmar</button>
                                                     </form>
@@ -193,22 +218,64 @@
                                         </div>
                                     </div>
                                 </div>
-                 
-                          </div>
+                                <div class="tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab" tabindex="0">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-semibold mb-4">Motorista e seu taxi</h5>
+                                            <div class="d-flex align-items-stretch">
+                                                <div class="card w-100">
+                                                    <div class="card-body p-4">
+                                                        <div class="table-responsive">
+                                                            <table class="table text-nowrap mb-0 align-middle">
+                                                                <thead class="text-dark fs-4">
+                                                                    <tr>
+                                                                        <th class="border-bottom-0 text-center">
+                                                                            <h6 class="fw-semibold mb-0">N* da associação</h6>
+                                                                        </th>
+                                                                        <th class="border-bottom-0 text-center">
+                                                                            <h6 class="fw-semibold mb-0">Motorista</h6>
+                                                                        </th>
 
-                            </div>
-                            <div class="py-6 px-6 text-center">
-                                <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
+                                                                        <th class="border-bottom-0 text-center">
+                                                                            <h6 class="fw-semibold mb-0">N* do taxi</h6>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    include_once '../services/MTService.php';
+
+                                                                    $service = new MTService();
+                                                                    $service->viewTabelaMT();
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-                <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="../assets/js/sidebarmenu.js"></script>
-                <script src="../assets/js/app.min.js"></script>
-                <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-                <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-                <script src="../assets/js/dashboard.js"></script>
-                </body>
 
+                </div>
+                <div class="py-6 px-6 text-center">
+                    <p class="mb-0 fs-4">Sistema de gestão UTEC - Perfil Administrador</p>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/sidebarmenu.js"></script>
+    <script src="../assets/js/app.min.js"></script>
+    <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>

@@ -140,24 +140,24 @@ class MotoristaRepository {
         foreach ($result as $motorista) {
             ?>
             <tr>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-0"><?php echo $motorista['email'] ?></h6>
                 </td>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-1"><?Php echo $motorista['morada'] ?></h6> 
                 </td>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-1"><?Php echo $motorista['datanasc'] ?></h6>
                     
                 </td>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-1"><?Php echo $motorista['destreza'] ?></h6> 
                 </td>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-1"><?Php echo $motorista['id_empresa'] ?></h6> 
                 </td>
             </td>
-            <td class="border-bottom-0">
+            <td class="border-bottom-0 text-center">
                 <div class="d-flex justify-content-evenly align-items-center">
                     <a href="../view/motorista-editar.php?email=<?Php echo $motorista['email'] ?> &morada=<?Php echo $motorista['morada']?>&datanasc=<?Php echo $motorista['datanasc'] ?>&destreza=<?Php echo $motorista['destreza'] ?>&empresa=<?Php echo $motorista['id_empresa'] ?>" class="mb-0 fw-normal btn btn-info">
                         <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar Obreiro" class="icon icon-tabler icon-tabler-edit" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -168,14 +168,14 @@ class MotoristaRepository {
                             <path d="M16 5l3 3"></path>
                         </svg>
                     </a>
-                    <a href="../controllers/actionMotorista.php?op=eliminar&id=<?Php echo $motorista['email'] ?>" class="mb-0 fw-normal btn btn-danger">
+                  <!--  <a href="../controllers/actionMotorista.php?op=eliminar&id=<?Php //echo $motorista['email'] ?>" class="mb-0 fw-normal btn btn-danger">
                         <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Obreiro" class="icon icon-tabler icon-tabler-eraser" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3">
                             </path>
                             <path d="M18 13.3l-6.3 -6.3"></path>
                         </svg> 
-                    </a>
+                    </a>-->
                 </div>   
             </td>
             </tr>

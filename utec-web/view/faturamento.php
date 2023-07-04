@@ -87,6 +87,22 @@
               </a>
             </li>
             <li class="sidebar-item">
+                                <a class="sidebar-link" href="./motorista-taxi.php" aria-expanded="false">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
+                                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
+                                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="hide-menu">Taxis e seus Motoristas</span>
+                                </a>
+                            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="./minha-conta.php" aria-expanded="false">
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -156,8 +172,8 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-link" href="index.php">Clientes</a>
                 <a class="nav-link" href="taxistas.php">Taxistas</a>
-                <a class="nav-link active" href="viagens.php">Viagens</a>
-                <a class="nav-link" href="faturamento.php">Facturamento</a>
+                <a class="nav-link " href="viagens.php">Viagens</a>
+                <a class="nav-link active" href="faturamento.php">Facturamento</a>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">

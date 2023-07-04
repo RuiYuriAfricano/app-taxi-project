@@ -91,14 +91,14 @@ class EmpresaRepository {
             ?>
 
             <tr>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-0"><?php echo $empresa['codEmpresa'] ?></h6>
                 </td>
-                <td class="border-bottom-0">
+                <td class="border-bottom-0 text-center">
                     <h6 class="fw-semibold mb-1"><?Php echo $empresa['nomeEmpresa'] ?></h6> 
                 </td>
             </td>
-            <td class="border-bottom-0">
+            <td class="border-bottom-0 text-center">
                 <div class="d-flex justify-content-evenly align-items-center">
                     <a href="../view/empresa-editar.php?id=<?Php echo $empresa['codEmpresa'] ?> &nome=<?Php echo $empresa['nomeEmpresa'] ?>" class="mb-0 fw-normal btn btn-info">
                         <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar Obreiro" class="icon icon-tabler icon-tabler-edit" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

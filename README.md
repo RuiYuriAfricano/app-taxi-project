@@ -22,7 +22,7 @@ Projeto de Serviços de Transporte da UTEC
 - PHP
 - Bootstrap
 - React Hooks
-- HTML E CSS
+- HTML e CSS
 # Others 
 - Git
 - VScode 
